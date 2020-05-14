@@ -1,0 +1,7 @@
+<!--pages/page2/index2.wxml-->
+<text>pages/page2/index2.wxml</text>
+<view>
+<image src="/images/user_active.png"></image>
+</view>
+<text>nothings</text>
+<image src="/images/user_active.png"></image>
