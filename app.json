@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/page2/index2",
+    "pages/realPages/analysis/analysis",
     "pages/realPages/mainUi/mainUi",
     "pages/realPages/userInfo/userInfo",
     "pages/realPages/recipe/recipe"
