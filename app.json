@@ -4,9 +4,9 @@
     "pages/logs/logs",
     "pages/page2/index2",
     "pages/realPages/analysis/analysis",
-    "pages/realPages/mainUi/mainUi",
     "pages/realPages/userInfo/userInfo",
-    "pages/realPages/recipe/recipe"
+    "pages/realPages/recipe/recipe",
+    "pages/realPages/mainUi/mainUi"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,7 +41,6 @@
         "iconPath": "/images/user.png",
         "selectedIconPath": "/images/user_active.png"
       }
-
     ]
   },
   "sitemapLocation": "sitemap.json"

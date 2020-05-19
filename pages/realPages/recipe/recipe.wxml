@@ -1,2 +1,36 @@
-<!--pages/realPages/recipe/recipe.wxml-->
-<text>pages/realPages/recipe/recipe.wxml</text>
+
+<view class="outest-search">
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="请输入搜索内容"/>
+      </view>
+    </view>
+    <view class="weui-search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
+  </view>
+</view>
+
+<view class="outest_navbar">
+  <view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+  </view>
+</view>
+
+
+<view hidden="{{currentTab!==0}}" class='fir_page'>
+  <scroll-view scroll-y = "true ">
+    <view class = "item-content" wx:for="{{food_list}}" wx:for-item = "item">
+      <view class="detail">
+        <view class="name_style"> {{item.name}} </view>
+        <view class="heat_style"> {{item.heat}}</view>
+        <view class="qianka">千卡</view>
+      </view>
+      <view class="div_line"> </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view hidden="{{currentTab!==1}}">无</view>
+
+<view hidden="{{currentTab!==2}}">添加</view>
