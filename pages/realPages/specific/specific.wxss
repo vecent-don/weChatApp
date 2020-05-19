@@ -1,0 +1,75 @@
+/* 横着的分割View样式 */
+/*分割线样式*/
+.divLine{
+	background: #E0E3DA;
+	width: 100%;
+	height: 5rpx;
+ }
+ .div_container{
+	 padding-top: 30rpx;
+	 padding-bottom: 30rpx;
+ }
+
+ .foodname{
+	 padding: 30rpx;
+ }
+ .like{
+	 padding: 20rpx;
+ }
+ .my_title{
+	display: flex;
+	align-items: center;
+	pad: 5rpx;
+	background-color: aliceblue;
+}
+
+.font_big{
+	font-size: large;
+	font-weight: bolder;
+}
+
+.font_small{
+	font-size: small;
+	font-weight: normal;
+	color: gray;
+}
+
+.pic_container{
+	position:relative;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+}
+ec-canvas{
+	width: 100%;
+	height: 300rpx;
+}
+.middle{
+	padding: 50rpx;
+	display: flex;
+}
+
+.font_big_middle{
+	flex: auto;
+	font-size: large;
+	font-weight: bolder;
+}
+
+.font_small_middle{
+	flex: auto;
+	font-size: small;
+	font-weight: normal;
+	color: gray;
+}
+
+.context{
+	padding: 20rpx;
+}
+
+.picture{
+	padding-right: 20rpx;
+}
