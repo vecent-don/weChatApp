@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/page2/index2",
+    "pages/realPages/analysis/analysis",
+    "pages/realPages/userInfo/userInfo",
+    "pages/realPages/recipe/recipe",
+    "pages/realPages/mainUi/mainUi"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#eee",
+    "navigationBarTitleText": "减脂小管家",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/user.png",
+        "selectedIconPath": "/images/user_active.png"
+      },
+      {
+        "pagePath": "pages/realPages/mainUi/mainUi",
+        "text": "添加",
+        "iconPath": "/images/user.png",
+        "selectedIconPath": "/images/user_active.png"
+      },
+      {
+        "pagePath": "pages/realPages/recipe/recipe",
+        "text": "食谱",
+        "iconPath": "/images/user.png",
+        "selectedIconPath": "/images/user_active.png"
+      },
+      {
+        "pagePath": "pages/realPages/userInfo/userInfo",
+        "text": "添加",
+        "iconPath": "/images/user.png",
+        "selectedIconPath": "/images/user_active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,76 @@
+/* pages/realPages/mainUi/mainUi.wxss */
+page{
+  height:100%
+}
+
+.root{
+  display:flex;
+  flex-direction: column;
+  height:100%;
+  background-color:#fff;
+}
+
+.section{
+  background:rgb(197, 204, 196);
+  margin:10rpx;
+  padding:20rpx
+}
+
+.summary_panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.calorie_num {
+  flex:1;
+  text-align: center;
+  font-size: 15px;
+  background-color: #fff;
+  color: #222;
+  padding: 10px 0;
+}
+ 
+.calorie_hint {
+  flex:1;
+  text-align: center;
+  font-size: 10px;
+  background-color: #fff;
+  color: #222;
+  padding: 10px 0;
+}
+
+.content{
+  flex:1;
+  background-color: #fff;
+}
+
+.three{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.type{
+  flex:1;
+  text-align: left;
+  font-size: 10px;
+}
+
+.ka{
+  text-align: right;
+  padding-right: 30rpx;
+  font-size: 10px;
+  color: #ccc;
+}
+
+.picture image{
+  height: 40px;
+  width: 40px;
+}
