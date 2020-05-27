@@ -18,6 +18,7 @@ Page({
       current_weight:0,
       food_name:null,
       food_heat:null,
+      food_id:"",
       open_id:null,
       food_list:[
         {name:"黄米",
@@ -109,8 +110,9 @@ Page({
     })
   },
   go_to_specific:function(){
+    let that=this;
     wx.navigateTo({
-      url: '/pages/realPages/specific/specific',
+      url: '/pages/realPages/specific/specific?id='+that.data.food_id,
     })
   },
   //负责模态框的展示与否
@@ -120,6 +122,7 @@ Page({
       modalName: e.currentTarget.dataset.target,
       food_name: e.currentTarget.dataset.name,
       food_heat: e.currentTarget.dataset.heat,
+      food_id:e.currentTarget.dataset.id
     })
   },
   hideModal(e) {
