@@ -7,15 +7,13 @@ page{
   position: fixed;
   overflow-x: hidden;
   width: 100%;
-  height: 100%;
-  z-index: 10;
+  z-index: 30;
 }.outest_navbar{
   position: fixed;
   overflow-x: hidden;
   width: 100%;
-  height: 100%;
   top:93rpx;
-  z-index: 10;
+  z-index: 30;
 }
 .weui-search-bar {
   padding: 8px 10px;
@@ -80,7 +78,7 @@ page{
 }.qianka{
   width: 10%;
   font-size: 75%;
-  color:rgb(47, 255, 54);
+  color: 	#00FF7F;
   margin-top: 8rpx;
   margin-right: 50rpx;
 }.navbar{
@@ -108,4 +106,33 @@ page{
   background: #FFCC00;
 }.fir_page{
   margin-top: 160rpx;
+  z-index: 20;
+  background-color: white;
+}.item_content{
+  z-index: 8;
+}.keyboard-row {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color:white;
+}.num_input{
+  background-color: white;
+  border: 5px;
+  border-color: thistle;
+}.input_num_show{
+  font-weight: bold;
+  font-size: 200%;
+  background-color: white;
+}.input_underline{
+  font-size: 50%;
+  font-weight: 900;
+}.unit_measurement{
+  background-color: white;
+  margin-bottom: 30rpx;
+  margin-top: 20rpx;
+}.unit_border{
+  background-color: white;
 }

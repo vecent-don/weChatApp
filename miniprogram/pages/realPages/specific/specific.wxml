@@ -1,32 +1,35 @@
+<view style="background:white">
 <view class="div_container"><view class="divLine"></view></view>
-<view class="my_title">
-	<!-- 食品 -->
-	<navigator class="picture">
-		<image style="width:300rpx;height:250rpx" src="../../../images/food1.jpg"></image>
-	</navigator>
-	<!-- 菜名 -->
-	<view class="foodname">
-		<text class="font_big" space='true'>    宫保鸡丁    </text>
-		<text class="font_small">100g</text>
-	</view>
-	<view class="like">
-		<navigator>
-			<image style="width:70rpx;height:70rpx" src="../../../images/like_untouched.png"></image>
+
+	<view class="my_title">
+		<!-- 食品 -->
+		<navigator class="picture">
+			<image style="width:300rpx;height:250rpx" src="../../../images/food1.jpg"></image>
 		</navigator>
+		<!-- 菜名 -->
+		<view class="foodname">
+			<text class="font_big" space='true'>    宫保鸡丁    </text>
+			<text class="font_small">100g</text>
+		</view>
+		<view class="like">
+			<navigator>
+				<image style="width:70rpx;height:70rpx" src="../../../images/like_untouched.png"></image>
+			</navigator>
+		</view>
 	</view>
-</view>
-<view class="div_container"><view class="divLine"></view></view>
-<view class='middle'>
-<text class="font_big_middle" space='true'>  营养元素  </text>
-<text class="font_small_middle">单位 ：每 100 g</text>
-</view>
-<view class="pic_container">
- <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
-</view>
-<view class="div_container"><view class="divLine"></view></view>
-	<view class="suggest">
-		<text decode="true" class="font_big" space='true'>&nbsp;&nbsp;&nbsp;&nbsp;饮食建议</text>
+	<view class="div_container"><view class="divLine"></view></view>
+	<view class='middle'>
+	<text class="font_big_middle" space='true'>  营养元素  </text>
+	<text class="font_small_middle">单位 ：每 100 g</text>
 	</view>
-	<view class="context">
-		<text class="font_small">  现在的日子人们天天当节日过，过去只有过节吃的东西，现在只要兴起，随时都可以给自己大餐一顿。身体“负债累累”的主要原因，往往是由于大开的食欲、暴饮暴食和饮食的不规律，所以合理饮食变得尤为重要！</text>
+	<view class="pic_container">
+	<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
 	</view>
+	<view class="div_container"><view class="divLine"></view></view>
+		<view class="suggest">
+			<text decode="true" class="font_big" space='true'>&nbsp;&nbsp;&nbsp;&nbsp;饮食建议</text>
+		</view>
+		<view class="context">
+			<text class="font_small">  现在的日子人们天天当节日过，过去只有过节吃的东西，现在只要兴起，随时都可以给自己大餐一顿。身体“负债累累”的主要原因，往往是由于大开的食欲、暴饮暴食和饮食的不规律，所以合理饮食变得尤为重要！</text>
+		</view>
+</view>

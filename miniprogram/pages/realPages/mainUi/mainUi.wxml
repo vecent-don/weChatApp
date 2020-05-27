@@ -24,7 +24,7 @@
       <view class="calorie_hint">
         <text class="hint_2">今日消耗（千卡）</text>
       </view>
-    </view>
+    </view>ss
     <view class="container">
       <view class="calorie_num">
         <text class="num_3">{{calorie_potential}}</text>
