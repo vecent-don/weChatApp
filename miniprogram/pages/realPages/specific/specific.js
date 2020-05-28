@@ -106,6 +106,7 @@ Page({
 					})
 					console.log(xx.data.xfat)
 				},
+				
 				fail:function(res){
 					console.log("fail",res)
 				},
