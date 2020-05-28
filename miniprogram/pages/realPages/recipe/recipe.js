@@ -20,6 +20,7 @@ Page({
       food_heat:null,
       open_id:null,
       the_only_id:0,
+      food_id:"",
   },
   //负责模态框的时间和早午晚餐选择
   bindMultiPickerChange: function (e) {
@@ -32,24 +33,21 @@ Page({
     this.setData({
       currentTab: e.currentTarget.dataset.idx
     })
-  },
-
-  go_to_specific:function(){
+  },go_to_specific:function(){
+    let that=this;
     wx.navigateTo({
-      url: '/pages/realPages/specific/specific',
+      url: '/pages/realPages/specific/specific?id='+that.data.food_id,
     })
-  },
-
-  //负责模态框的展示与否
+  },//负责模态框的展示与否
   showModal:function(e) {
-    //console.log(e);
+    console.log(e);
     this.setData({
       modalName: e.currentTarget.dataset.target,
       food_name: e.currentTarget.dataset.name,
       food_heat: e.currentTarget.dataset.heat,
+      food_id:e.currentTarget.dataset.id
     })
   },
-
   hideModal(e) {
     this.setData({
       modalName: null

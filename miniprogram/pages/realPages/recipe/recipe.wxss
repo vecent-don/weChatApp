@@ -14,8 +14,7 @@ page{
   width: 100%;
   top:93rpx;
   z-index: 30;
-}
-.weui-search-bar {
+}.weui-search-bar {
   padding: 8px 10px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -24,8 +23,7 @@ page{
   background-color: #EFEFF4;
   border-top: 1rpx solid #D7D6DC;
   border-bottom: 1rpx solid #D7D6DC;
-}
-.weui-search-bar__form {
+}.weui-search-bar__form {
   position: relative;
   -webkit-box-flex: 1;
   -webkit-flex: auto;
@@ -33,21 +31,18 @@ page{
   border-radius: 5px;
   background: #FFFFFF;
   border: 1rpx solid #E6E6EA;
-}
-.weui-search-bar__box {
+}.weui-search-bar__box {
   position: relative;
   padding-left: 30px;
   padding-right: 30px;
   width: 100%;
   box-sizing: border-box;
   z-index: 1;
-}
-.weui-search-bar__input {
+}.weui-search-bar__input {
   height: 28px;
   line-height: 28px;
   font-size: 14px;
-}
-.weui-icon-search_in-box {
+}.weui-icon-search_in-box {
   position: absolute;
   left: 10px;
   top: 7px;
@@ -85,17 +80,14 @@ page{
   flex: none;
   display: flex;
   background: #fff;
-}
-.navbar .item{
+}.navbar .item{
   position: relative;
   flex: auto;
   text-align: center;
   line-height: 80rpx;
-}
-.navbar .item.active{
+}.navbar .item.active{
   color: #FFCC00;
-}
-.navbar .item.active:after{
+}.navbar .item.active:after{
   content: "";
   display: block;
   position: absolute;

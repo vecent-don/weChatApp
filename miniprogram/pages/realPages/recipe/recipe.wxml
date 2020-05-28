@@ -21,7 +21,7 @@
 <view hidden="{{currentTab!==0}}" class='fir_page' style="z-idnex:5">
   <view scroll-y = "true ">
     <view class = "item-content" wx:for="{{cloud_list}}" wx:for-item = "item" wx:for-index="current_index" >
-      <view class="detail" bindtap="showModal" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal">
+      <view class="detail" bindtap="showModal" data-id="{{item._id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal">
         <view class="name_style"> {{item.name}} </view>
         <view class="heat_style"> {{item.heat}}</view>
         <view class="qianka">千卡</view>
@@ -33,7 +33,7 @@
 
 <view hidden="{{currentTab!==1}}" class='fir_page' style="z-idnex:5">
   <view scroll-y = "true ">
-    <view class = "item-content" wx:for="{{cloud_list}}" wx:for-item = "item" wx:for-index="current_index" >
+    <view class = "item-content" wx:for="{{favor_list}}" wx:for-item = "item" wx:for-index="current_index" >
       <view class="detail" bindtap="showModal" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal">
         <view class="name_style"> {{item.name}} </view>
         <view class="heat_style"> {{item.heat}}</view>
