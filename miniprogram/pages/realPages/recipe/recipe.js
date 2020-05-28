@@ -19,82 +19,7 @@ Page({
       food_name:null,
       food_heat:null,
       open_id:null,
-      food_list:[
-        {name:"黄米",
-         heat: 351,
-         isHealthy:true,
-        },
-        {
-          name:"番茄虾仁",
-          heat:64,
-          isHealthy:true,
-        },
-        {
-          name:"白玉豆腐",
-          heat: 75,
-          isHealthy:false,
-        },
-        {
-          name:"菠萝炒牛肉",
-          heat: 81,
-          isHealthy:true,
-        },
-        {
-          name:"小葱拌牛肚",
-          heat: 101,
-          isHealthy:false,
-        },
-        {
-          name:"砂锅豆腐",
-          heat: 55,
-          isHealthy:true,
-        },
-        {
-          name:"洋姜",
-          heat: 64 ,
-          isHealthy: true,
-        },
-        {
-          name:"小葱炒牛肉",
-          heat: 100 ,
-          isHealthy:false,
-        },
-        {
-          name:"白炒虾球",
-          heat: 102,
-          isHealthy:false,
-        },
-        {
-          name:"滑溜黄瓜猪里脊",
-          heat: 128,
-          isHealthy:true,
-        },
-        {
-          name:"薏米炖鸭",
-          heat: 83,
-          isHealthy:false,
-        },
-        {
-          name:"海米油菜芯",
-          heat: 73,
-          isHealthy: true,
-        },
-        {
-          name:"韭苔",
-          heat: 37,
-          isHealthy:true,
-        },
-        {
-          name:"纯净水",
-          heat: 0,
-          isHealthy: true,
-        },
-        {
-          name:"牛蹄筋",
-          heat: 151,
-          isHealthy:true,
-        },
-      ]
+      the_only_id:0,
   },
   //负责模态框的时间和早午晚餐选择
   bindMultiPickerChange: function (e) {
@@ -108,71 +33,164 @@ Page({
       currentTab: e.currentTarget.dataset.idx
     })
   },
+
   go_to_specific:function(){
     wx.navigateTo({
       url: '/pages/realPages/specific/specific',
     })
   },
+
   //负责模态框的展示与否
   showModal:function(e) {
-    console.log(e);
+    //console.log(e);
     this.setData({
       modalName: e.currentTarget.dataset.target,
       food_name: e.currentTarget.dataset.name,
       food_heat: e.currentTarget.dataset.heat,
     })
   },
+
   hideModal(e) {
     this.setData({
       modalName: null
     })
   },
-  addData(){
-    let that = this
-    this.setData({
-      modalName: null
-    })
-    DataBase_userMenu.where({openid:that.data.open_id,date:that.data.current_date}).get({
+  jiafa(){
+    var a =1+1
+    console.log("测试调用函数？")
+  },
+  update_data_to_menu(){
+    console.log("调用update_data_to_menu方法")
+    let that = this;
+    var list_tmp = this.data.list_tmp;
+    var meal_time = this.data.meal_time;
+    wx.cloud.callFunction({
+      name:"update_db",
+      data:{
+        meal_time:that.data.meal_time,
+        date:that.data.date,
+        list_tmp:that.data.list_tmp,
+        _openid:that.data.open_id
+      },
       success(res){
-        var list_tmp;
-        if(meal_time == 1){
-          list_tmp = res.data[0].breakfast
-        }
-        else if(meal_time == 2){
-          list_tmp = res.data[0].lunch
-        }
-        else if(meal_time == 3){
-          list_tmp = res.data[0].dinner
-        }
-        else{
-          list_tmp = res.data[0].other
-        }
-        list_tmp.add({heat,food_name,food_weight})
-        console.log(list_tmp)
+        console.log(res)
       },
       fail(res){
-        console.log("添加失败",res)
+        console.log(res)
       }
     })
-      
-    DataBase_all.add({
-      data:{
-        opid:that.data.open_id,
-        date:that.data.current_date,
-        meal_time:that.data.multiIndex[1]+1,
-        food_name:that.data.food_name,
-        food_heat:that.data.food_heat,
-        weight:that.data.current_weight
-      },
+  },
+  getDateStr: function(today, addDayCount) {
+    var date;
+    if(today) {
+      date = new Date(today);
+    }else{
+      date = new Date();
+    }
+    date.setDate(date.getDate() + addDayCount);//获取AddDayCount天后的日期 
+      var y = date.getFullYear();
+      var m = date.getMonth() + 1;//获取当前月份的日期 
+      var d = date.getDate();
+      if(m < 10){
+        m = '0' + m;
+      };
+      if(d < 10) {
+        d = '0' + d;
+      };
+      console.log( y + "-" + m + "-" + d)
+      return y + "-" + m + "-" + d;
+    },
+  //新建数据
+  addDataToMenu(){
+    console.log("调用新建数据方法")
+    let that = this
+    var list_tmp = [{heat:that.data.food_heat,name:that.data.food_name,weight:that.data.current_weight}]
+    var meal_time = this.data.meal_time
+    if(meal_time == 1){
+      DataBase_userMenu.add({
+        data:{
+          breakfast:list_tmp,
+          date:that.data.current_date,
+          dinner:[],
+          lunch:[],
+          other:[]
+        },
+        success(res){},
+      })
+    }else if(meal_time == 2){
+      DataBase_userMenu.add({
+        data:{
+          breakfast:[],
+          date:that.data.current_date,
+          dinner:[],
+          lunch:list_tmp,
+          other:[]
+        },
+        success(res){},
+      })
+    }else if(meal_time == 3){
+      DataBase_userMenu.add({
+        data:{
+          breakfast:[],
+          date:that.data.current_date,
+          dinner:list_tmp,
+          lunch:[],
+          other:[]
+        },
+        success(res){},
+      })
+    }else{
+      DataBase_userMenu.add({
+        data:{
+          breakfast:[],
+          date:that.data.current_date,
+          dinner:[],
+          lunch:[],
+          other:list_tmp
+        },
+        success(res){},
+      })
+    }
+  },
+  addData(){
+    let that = this
+    var date = that.getDateStr(null,0-that.data.multiIndex[0])
+    var meal_time = that.data.multiIndex[1]+1
+    that.setData({
+      meal_time:that.data.multiIndex[1]+1,
+      current_weight:0,
+      modalName: null,
+      current_date:date
+    })
+    DataBase_userMenu.where({
+      _openid:that.data.open_id,
+      date:that.data.current_date
+    }).get({
       success(res){
-        console.log("添加成功",res)
+        if(res.data.length != 0){
+          console.log("添加成功fuck here",res)
+          var list_tmp;
+
+          if(meal_time == 1){ list_tmp = res.data[0].breakfast }
+          else if(meal_time == 2){list_tmp = res.data[0].lunch }
+          else if(meal_time == 3){list_tmp = res.data[0].dinner}
+          else{list_tmp = res.data[0].other}
+          list_tmp.push({heat:that.data.food_heat,name:that.data.food_name,weight:that.data.current_weight})
+          that.setData({
+            list_tmp:list_tmp
+          })
+          console.log(that.data.list_tmp)
+          that.update_data_to_menu()
+        }
+        else{
+          that.addDataToMenu();
+        }
       },
       fail(res){
         console.log("添加失败",res)
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -190,7 +208,6 @@ Page({
         that.setData({
           open_id: res.result.openid
         })
-        console.log(that.data.open_id)
       },fail(res){
         console.log("获取openid失败",res)
       }
@@ -208,7 +225,6 @@ Page({
       }
     })
   },
-  
   tapKey:function(event){
     var x = event.currentTarget.dataset.key
     this.setData({
@@ -221,8 +237,6 @@ Page({
       current_weight: this.data.current_weight.length == 1? '0': this.data.current_weight.substring(0, this.data.current_weight.length - 1)
     })
   },
-  
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -271,4 +285,182 @@ Page({
   onShareAppMessage: function () {
 
   }
+
+  
 })
+
+/*
+food_list:[
+  {name:"黄米",
+   heat: 351,
+   isHealthy:true,
+  },
+  {
+    name:"番茄虾仁",
+    heat:64,
+    isHealthy:true,
+  },
+  {
+    name:"白玉豆腐",
+    heat: 75,
+    isHealthy:false,
+  },
+  {
+    name:"菠萝炒牛肉",
+    heat: 81,
+    isHealthy:true,
+  },
+  {
+    name:"小葱拌牛肚",
+    heat: 101,
+    isHealthy:false,
+  },
+  {
+    name:"砂锅豆腐",
+    heat: 55,
+    isHealthy:true,
+  },
+  {
+    name:"洋姜",
+    heat: 64 ,
+    isHealthy: true,
+  },
+  {
+    name:"小葱炒牛肉",
+    heat: 100 ,
+    isHealthy:false,
+  },
+  {
+    name:"白炒虾球",
+    heat: 102,
+    isHealthy:false,
+  },
+  {
+    name:"滑溜黄瓜猪里脊",
+    heat: 128,
+    isHealthy:true,
+  },
+  {
+    name:"薏米炖鸭",
+    heat: 83,
+    isHealthy:false,
+  },
+  {
+    name:"海米油菜芯",
+    heat: 73,
+    isHealthy: true,
+  },
+  {
+    name:"韭苔",
+    heat: 37,
+    isHealthy:true,
+  },
+  {
+    name:"纯净水",
+    heat: 0,
+    isHealthy: true,
+  },
+  {
+    name:"牛蹄筋",
+    heat: 151,
+    isHealthy:true,
+  },
+]*/
+
+//新建之后更新数据库
+  /*
+  update_db(){
+    let that = this
+    var the_only_id = that.data.the_only_id
+    var meal_time = that.data.meal_time
+    var list_tmp = that.data.list_tmp
+    if(meal_time == 1){
+      console.log("此处的openid",the_only_id)
+      DataBase_userMenu.doc(the_only_id).update({
+        data:{
+          date:"1999" 
+        },
+        success(res){
+          console.log("早餐修改",res)
+        },fail(res){
+          console.log("修改失败",res)
+        }
+      })
+    }
+    else if(meal_time == 2){
+      DataBase_userMenu.doc(the_only_id).update({
+        data:{
+          lunch:list_tmp
+        },
+        success(res){
+          console.log("午餐修改")
+        }
+      })
+    }
+    else if(meal_time == 3){
+      DataBase_userMenu.doc(the_only_id).update({
+        data:{
+          dinner:list_tmp
+        },
+        success(res){
+          console.log("晚餐修改")
+        }
+      })
+    }
+    else{
+      DataBase_userMenu.doc(the_only_id).update({
+        data:{
+          other:list_tmp
+        },
+        success(res){ 
+          console.log("其它修改")
+        }
+      })
+    }
+  },*/
+  //新建当天用户数据
+  /*
+    user_menu_addtion(){
+      let that = this
+      DataBase_userMenu.add({
+        data:{
+          breakfast:[],
+          date:that.data.current_date,
+          dinner:[],
+          lunch:[],
+          other:[]
+        },
+        success(res){
+          the_only_id = res._id
+          console.log(the_only_id)
+          that.setData({
+            the_only_id:res.id
+          })
+        },
+        fail(res){
+          console.log("添加userMenu时失败")
+        },
+        complete(){
+          that.update_db()
+        }
+      })
+    */
+   //一下是添加到另一个数据库中的代码，废弃
+    /*DataBase_all.add({
+      data:{
+        opid:that.data.open_id,
+        date:that.data.current_date,
+        meal_time:that.data.multiIndex[1]+1,
+        food_name:that.data.food_name,
+        food_heat:that.data.food_heat,
+        weight:that.data.current_weight
+      },
+      success(res){
+        console.log("添加成功",res)
+      },
+      fail(res){
+        console.log("添加失败",res)
+      }
+    })
+    
+  },*/
