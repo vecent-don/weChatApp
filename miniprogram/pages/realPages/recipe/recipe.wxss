@@ -71,11 +71,10 @@ page{
   height: 3rpx;
   margin-top: 30rpx;
 }.qianka{
-  width: 10%;
+  width: 20%;
   font-size: 75%;
   color: 	#00FF7F;
   margin-top: 8rpx;
-  margin-right: 50rpx;
 }.navbar{
   flex: none;
   display: flex;
@@ -100,6 +99,15 @@ page{
   margin-top: 160rpx;
   z-index: 20;
   background-color: white;
+}.third_page{
+  margin-top: 170rpx;
+  z-index: 20;
+  background-color: white;
+}.add_self{
+  font-size: 90%;
+  display:flex;
+  justify-content: center;
+  height: 55rpx;
 }.item_content{
   z-index: 8;
 }.keyboard-row {
