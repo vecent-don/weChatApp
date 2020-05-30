@@ -1,4 +1,18 @@
 <!--pages/realPages/mainUi/mainUi.wxml-->
+<wxs module="m1">
+  sum=0;
+  var add=function(n){
+    sum=Number(n)+sum;
+    
+  }
+  var getSum=function(){
+    a=sum;
+    sum=0;
+    return a;
+  }
+  module.exports.getSum=getSum;
+</wxs>     
+<view bindtap="getdata"></view>
 <view class="root">
   <view class="section">  
     <picker mode="date" value="{{date}}" start="1978-01-01" end="2099-12-31" bindchange="bindDateChange">  
@@ -37,7 +51,7 @@
 
   
   <view class="details">
-    <view class="three">
+    <view class="list" bindtap="changeToggle" data-index="0">
       <view class="picture">
         <image src="../../../images/breakfast.png"></image>
       </view>
@@ -45,11 +59,34 @@
         <text>  早餐</text>
       </view>
       <view class="ka">
-        <text>{{messageOfBreakfast}}</text>
+        
+        <view wx:for="{{datalist}}" wx:for-key="_id">
+          <view  wx:if="item._id=d721728a5ecd109400435e0f199b876b">
+          <text>{{item._id}}</text>
+          </view>
+        </view>
+        <text class="iconfont {{selectedFlag[0]?'icon-shangjiantou':'icon-xiala'}} "></text>
+        
       </view>
     </view>
+
+    <view hidden="{{!selectedFlag[0]}}"   bindtap="getdata">
+      <view wx:for="{{datalist}}">
+        <view wx:for="{{item.breakfast}}" wx:for-item="bk">
+          <view class="list bg-gray">
+            <view class="left">{{bk.name}}</view>
+            <view class="right">{{bk.heat}}千卡</view>
+          </view>
+        </view>
+      </view>
+      <block wx:for="{{list01}}" wx:for-item="item" wx:for-index="index">
+        <view class="list bg-gray">
+          <view></view>
+        </view>
+      </block>
+    </view>
     
-    <view class="three">
+    <view class="list" bindtap="changeToggle" data-index="1">
       <view class="picture">
         <image src="../../../images/lunch.png"></image>
       </view>
@@ -58,10 +95,28 @@
       </view>
       <view class="ka">
         <text>{{messageOfLunch}}</text>
+        <text class="iconfont {{selectedFlag[1]?'icon-shangjiantou':'icon-xiala'}}">
+        </text>
       </view>
     </view>
-    
-    <view class="three">
+
+    <view hidden="{{!selectedFlag[1]}}"   bindtap="getdata">
+      <view wx:for="{{datalist}}">
+        <view wx:for="{{item.lunch}}" wx:for-item="bk">
+          <view class="list bg-gray">
+            <view class="left">{{bk.name}}</view>
+            <view class="right">{{bk.heat}}千卡</view>
+          </view>
+        </view>
+      </view>
+      <block wx:for="{{list02}}" wx:for-item="item" wx:for-index="index">
+        <view class="list bg-gray">
+         <view>展开1</view>
+        </view>
+      </block>
+    </view>
+
+    <view class="list" bindtap="changeToggle" data-index="2">
       <view class="picture">
         <image src="../../../images/dinner.png"></image>
       </view>
@@ -69,11 +124,30 @@
         <text>  晚餐</text>
       </view>
       <view class="ka">
-        <text>{{messageOfDinner}}</text>
+        <text>{{messageOfDinner}}
+        <text class="iconfont {{selectedFlag[2]?'icon-shangjiantou':'icon-xiala'}}">
+        </text>
+        </text>
       </view>
     </view>
     
-    <view class="three">
+    <view hidden="{{!selectedFlag[2]}}"  bindtap="getdata">
+      <view wx:for="{{datalist}}">
+        <view wx:for="{{item.dinner}}" wx:for-item="bk">
+          <view class="list bg-gray">
+            <view class="left">{{bk.name}}</view>
+            <view class="right">{{bk.heat}}千卡</view>
+          </view>
+        </view>
+      </view>
+      <block wx:for="{{list03}}" wx:for-item="item" wx:for-index="index">
+        <view class="list bg-gray">
+         <view>展开1</view>
+        </view>
+      </block>
+    </view>
+
+    <view class="list" bindtap="changeToggle" data-index="3">
       <view class="picture">
         <image src="../../../images/exture.png"></image>
       </view>
@@ -82,10 +156,29 @@
       </view>
       <view class="ka">
         <text>{{messageOfExture}}</text>
+        <text class="iconfont {{selectedFlag[3]?'icon-shangjiantou':'icon-xiala'}}">
+        </text>
       </view>
     </view>
+
+    <view hidden="{{!selectedFlag[3]}}"  bindtap="getdata">
+      <view wx:for="{{datalist}}">
+        <view wx:for="{{item.other}}" wx:for-item="bk">
+          <view class="list bg-gray">
+            <view class="left">{{bk.name}}</view>
+            <view class="right">{{bk.heat}}千卡</view>
+          </view>
+        </view>
+      </view>
+      <block wx:for="{{list04}}" wx:for-item="item" wx:for-index="index">
+        <view class="list bg-gray">
+          <view>展开1</view>
+       </view>
+      </block>
+    </view>
+
    
-    <view class="three">
+    <view class="list" bindtap="changeToggle" data-index="4">
       <view class="picture">
         <image src="../../../images/exercise.png"></image>
       </view>
@@ -94,12 +187,19 @@
       </view>
       <view class="ka">
         <text>{{messageOfExercise}}</text>
+        <text class="iconfont {{selectedFlag[4]?'icon-shangjiantou':'icon-xiala'}}">
+        </text>
       </view>
     </view>
+    
+    <view hidden="{{!selectedFlag[4]}}"  bindtap="getdata">
+      <block wx:for="{{list05}}" wx:for-item="item" wx:for-index="index">
+        <view class="list bg-gray">
+          <view>展开1</view>
+       </view>
+      </block>
+    </view>
   </view>
-  
   <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"disabled="{{disabled}}" bindtap="goToAnalysisPage" hover-class="other-button-hover" > 卡路里分析 </button>
 
-  <view class="content"></view>
-  <view class="player"></view>
 </view>

@@ -57,6 +57,7 @@
     </view>
   </view>
 </view>
+  addDataToMenu
 
 <view hidden="{{currentTab!==3}}" class='third_page' style="z-idnex:5">
   <view scroll-y = "true ">

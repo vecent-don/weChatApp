@@ -1,2 +1,71 @@
 <!--pages/realPages/analysis/analysis.wxml-->
 <text>pages/realPages/analysis/analysis.wxml</text>
+
+<view class="page">
+<!-- 总数 -->
+  <view class="li" bindtap='changeToggle'>
+    <view class="left">总数</view>
+    <view class="right gray" >8</view>
+  </view>
+
+<!--分类 -->
+  <view class="li" data-index="0" bindtap='changeToggle'><view class="left">类别1</view>
+    <view class="right">3 
+      <text class="iconfont {{selectedFlag[0]?'icon-shangjiantou':'icon-xiala'}}">
+        </text>
+    </view>
+  </view>
+  <view hidden="{{!selectedFlag[0]}}">
+    <block wx:for="{{list01}}" wx:for-item="item" wx:for-index="index">
+      <view class="li bg-gray">
+        <view>展开1</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="li" data-index="1" bindtap='changeToggle'>
+    <view class="left">类别2</view>
+    <view class="right">0
+      <text class="iconfont {{selectedFlag[1]?'icon-shangjiantou':'icon-xiala'}}"> </text>
+    </view>
+  </view>
+  <view hidden="{{!selectedFlag[1]}}">
+    <block wx:for="{{list02}}" wx:for-item="item" wx:for-index="index">
+      <view class="li bg-gray">
+        <view>展开2</view>
+
+      </view>
+    </block>
+  </view>
+
+  <view class="li" data-index="2" bindtap='changeToggle'>
+    <view class="left">类别3</view>
+    <view class="right red">2
+      <text class="iconfont {{selectedFlag[2]?'icon-shangjiantou':'icon-xiala'}}"> </text>
+    </view>
+  </view>
+  <view hidden="{{!selectedFlag[2]}}">
+    <block wx:for="{{list03}}" wx:for-item="item" wx:for-index="index">
+      <view class="li bg-gray">
+        <view>展开3</view>
+
+      </view>
+    </block>
+  </view>
+
+
+  <view class="li" data-index="3" bindtap='changeToggle'>
+    <view class="left">类别4</view>
+    <view class="right red">3
+      <text class="iconfont {{selectedFlag[3]?'icon-shangjiantou':'icon-xiala'}}"> </text>
+    </view>
+  </view>
+ <view hidden="{{!selectedFlag[3]}}">
+    <block wx:for="{{list04}}" wx:for-item="item" wx:for-index="index">
+      <view class="li bg-gray">
+        <view>展开4</view>
+        <view class="red">展开4右边</view>
+      </view>
+    </block>
+  </view>
+</view>

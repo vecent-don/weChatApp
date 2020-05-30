@@ -52,10 +52,34 @@ page{
   background-color: #fff;
 }
 
-.three{
+.list {
+  background-color: #fff;
   display: flex;
-  align-items: center;
-  flex-direction: row;
+  justify-content: space-between;
+  font-size: 34rpx;
+  width: 92%;
+  padding: 0 4%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+
+.bg-gray{
+  background-color: #ccc!important;
+  border-bottom: 1rpx solid  #fff!important;
+}
+
+.list.icon-xiala,icon-shangjiantou  {
+color: #999;
+font-size: 28rpx;
+}
+
+.gray {
+color: #8e8e8e;
+}
+
+.red {
+color: #fe2e2e;
 }
 
 .type{

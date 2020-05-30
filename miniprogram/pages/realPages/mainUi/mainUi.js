@@ -1,7 +1,13 @@
 // pages/realPages/mainUi/mainUi.js
-const app = getApp();
+
+const DataBase_userMenu = wx.cloud.database().collection("userMenu")
+const DataBase_favor =wx.cloud.database().collection("favor")
+const DataBase_userDefined = wx.cloud.database().collection("user_defined")
 const db = wx.cloud.database()
 var util = require('../../../utils/util.js')
+var app = getApp()
+
+
 Page({
 
   /**
@@ -16,33 +22,78 @@ Page({
     messageOfLunch:"未设置",
     messageOfDinner:"未设置",
     messageOfExercise:"未设置",
-    messageOfExture:"未设置"
+    messageOfExture:"未设置",
+    datalist:[],
+    open_id:"",
+    breakfastall:[],
+    //breakfast
+    list01: [
+      { item_id: 1 }, { item_id: 11 }, { item_id: 11 },
+    ],
+    list02: [
+
+    ],
+    list03: [
+      { item_id: 11 }, { item_id: 11 }
+    ],
+    list04: [
+      { item_id: 11 }, { item_id: 11 }, { item_id: 11 }
+    ],
+    list05: [
+      { item_id: 11 }, { item_id: 11 }, { item_id: 11 }
+    ],
+  
+  
+  // 展开折叠
+     selectedFlag: [false, false, false, false, false]
+
+  },
+
+  dailyeating:function(){
+    let that=this;
+    DataBase_userMenu.where({
+      _openid:that.data.open_id
+    })
+  },
+
+  // 展开折叠选择  
+  changeToggle:function(e){
+    var index = e.currentTarget.dataset.index;
+    if (this.data.selectedFlag[index]){
+      this.data.selectedFlag[index] = false;
+   }else{
+      this.data.selectedFlag[index] = true;
+    }
+
+    this.setData({
+      selectedFlag: this.data.selectedFlag
+   })
   },
 
     //点击日期组件确定事件  
-  bindDateChange: function (e) {
-    let that = this
-    this.setData({
-      dates: e.detail.value
-    })
-    console.log(that.data.open_id,that.data.date)
-    db.collection('userMenu').where({
-      _openid:that.data.open_id,
-      date:that.data.dates
-    }).get({
-      success(res){
-        console.log(res)
-        that.setData({
-          breakfast:res.data[0].breakfast,
-          lunch:res.data[0].lunch,
-          dinner:res.data[0].dinner,
-          other:res.data[0].other
-        })
-      }
-    })
-  },
+  bindDateChange: function (e) { 
+    let that = this 
+    this.setData({ 
+      dates: e.detail.value 
+    }) 
+    console.log(that.data.open_id,that.data.date) 
+    db.collection('userMenu').where({ 
+      _openid:that.data.open_id, 
+      date:that.data.dates 
+    }).get({ 
+      success(res){ 
+        console.log(res) 
+        that.setData({ 
+          breakfast:res.data[0].breakfast, 
+          lunch:res.data[0].lunch, 
+          dinner:res.data[0].dinner, 
+          other:res.data[0].other 
+        }) 
+      } 
+    }) 
+  }, 
 
-   goToAnalysisPage:function(){
+  goToAnalysisPage:function(){
     wx.navigateTo({
       url: '../../../pages/realPages/analysis/analysis',
     })
@@ -52,23 +103,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this
-    var time = util.formatDate(new Date());
-    this.setData({
-      dates:time
-    })
-    wx.cloud.callFunction({
-      name:"get_openid",
-      success(res){
-        console.log("获取openid成功")
-        getApp().globalData._openid = res.result.openid
-        that.setData({
-          open_id: res.result.openid
-        })
-      },fail(res){
-        console.log("获取openid失败",res)
-      }
-    })
+
+    let that = this 
+    var time = util.formatDate(new Date()); 
+    this.setData({ 
+      dates:time 
+    }) 
+    wx.cloud.callFunction({ 
+      name:"get_openid", 
+      success(res){ 
+        console.log("获取openid成功") 
+        getApp().globalData._openid = res.result.openid 
+        that.setData({ 
+          open_id: res.result.openid 
+        }) 
+      },fail(res){ 
+        console.log("获取openid失败",res) 
+      } 
+    }) 
   },
 
   /**
@@ -118,5 +170,21 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getdata(){
+
+    let that=this
+    wx.cloud.database().collection("userMenu").get({
+      success(res){
+        console.log("请求成功",res)
+        that.setData({
+          datalist:res.data,
+          breakfastall:res.data.breakfast
+        })
+      },
+      fail(res){
+        console.log("请求失败",res)
+      }
+    })
   }
 })
