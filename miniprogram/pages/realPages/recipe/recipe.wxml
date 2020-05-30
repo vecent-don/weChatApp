@@ -1,13 +1,13 @@
 
 <view class="outest-search">
-  <view class="weui-search-bar">
-    <view class="weui-search-bar__form">
-      <view class="weui-search-bar__box">
-        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-        <input type="text" class="weui-search-bar__input" placeholder="请输入搜索内容"/>
-      </view>
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索想找的食物" confirm-type="search" bindinput="search_food"></input>
     </view>
-    <view class="weui-search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
+    <view class="action" bindtap="search_move">
+        <view class="weui-search-bar__cancel-btn">搜索</view>
+    </view>
   </view>
 </view>
 
@@ -21,7 +21,7 @@
 <view hidden="{{currentTab!==0}}" class='fir_page' style="z-idnex:5">
   <view scroll-y = "true ">
     <view class = "item-content" wx:for="{{cloud_list}}" wx:for-item = "item" wx:for-index="current_index" >
-      <view class="detail" bindtap="showModal" data-id="{{item._id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal">
+      <view class="detail" bindtap="showModal" data-id="{{item._id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" data-amount='{{item.amount}}' data-unit='{{item.unit}}'>
         <view class="name_style"> {{item.name}} </view>
         <view class="heat_style"> {{item.heat}}</view>
         <view class="qianka">千卡</view>
@@ -31,10 +31,79 @@
   </view>
 </view>
 
-<view hidden="{{currentTab!==1}}">无</view>
+<view hidden="{{currentTab!==1}}" class='fir_page' style="z-idnex:5">
+  <view scroll-y = "true ">
+    <view class = "item-content" wx:for="{{favor_list}}" wx:for-item = "item" wx:for-index="current_index" >
+      <view class="detail" bindtap="showModal" data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" data-amount='{{item.amount}}' data-unit='{{item.unit}}'>
+        <view class="name_style"> {{item.name}} </view>
+        <view class="heat_style"> {{item.heat}}</view>
+        <view class="qianka">千卡</view>
+      </view>
+      <view class="div_line"> </view>
+    </view>
+  </view>
+</view>
 
-<view hidden="{{currentTab!==2}}">添加</view>
+<view hidden="{{currentTab!==2}}" class='third_page' style="z-idnex:5">
+  <view scroll-y = "true ">
+    <view class="add_self" bindtap="add_user_def" data-target="addition">⊕添加自定义</view>
+    <view class = "item-content" wx:for="{{userDefined_list}}" wx:for-item = "item" wx:for-index="current_index" >
+      <view class="detail" bindlongpress="delete_item"  data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" bindtap="showModal" data-unit="{{item.unit}}" data-amount="{{item.amount}}">
+        <view class="name_style"> {{item.name}} </view>
+        <view class="heat_style"> {{item.heat}}</view>
+        <view class="qianka">千卡/{{item.amount}}{{item.unit}}</view>
+      </view>
+      <view class="div_line"> </view>
+    </view>
+  </view>
+</view>
 
+<view hidden="{{currentTab!==3}}" class='third_page' style="z-idnex:5">
+  <view scroll-y = "true ">
+    <view class = "item-content" wx:for="{{search_list}}" wx:for-item = "item" wx:for-index="current_index" >
+      <view class="detail" data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" bindtap="showModal" data-unit="{{item.unit}}" data-amount="{{item.amount}}">
+        <view class="name_style"> {{item.name}} </view>
+        <view class="heat_style"> {{item.heat}}</view>
+        <view class="qianka">千卡/{{item.amount}}{{item.unit}}</view>
+      </view>
+      <view class="div_line"> </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='addition'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">添加自定义食物</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+      <form>
+        <view class="cu-form-group margin-top">
+          <view class="title">食物名称</view>
+          <input placeholder="如：红烧狮子头" bindinput="user_name"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">数量</view>
+          <input placeholder="如：1"  bindinput="user_define_amount"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">单位</view>
+          <input placeholder="如：克、碗、碟" bindinput="user_define_unit"></input>
+        </view>
+        <view class="cu-form-group margin-bottom" >
+          <view class="title">热量</view>
+          <input placeholder="如：100（单位千卡）" bindinput="user_define_heat"></input>
+        </view>
+      </form>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <view class="cu-btn bg-green margin-left" bindtap="user_define">确定</view>
+      </view>
+    </view>
+  </view>
+</view>
 
 <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
   <view class="cu-dialog"  style="background-color:white">
@@ -49,16 +118,12 @@
       </view>
       <view class="action text-blue" bindtap="hideModal">取消</view>
     </view>
-    
     <view  bindtap="go_to_specific">
-        <text>{{food_name}}:</text><text>{{food_heat}}千卡/</text><text>100g</text>
+        <text>{{food_name}}:</text><text>{{food_heat}}千卡/</text><text>{{food_amount}}{{food_unit}}</text>
     </view>
-
-    <view class="unit_measurement">单位：克</view>
+    <view class="unit_measurement">单位：{{food_unit}}</view>
     <view class="input_num_show">{{current_weight}}</view>
-    <view style="background-color:white">__________________</view>
-    
-    
+    <view style="background-color:white">__________________</view> 
     <view class='keyboard-row'>
       <button class='num_input' data-key='1'  bindtap='tapKey'>1</button>
       <button class='num_input' data-key='2' bindtap='tapKey'>2</button>
@@ -75,9 +140,21 @@
       <button class='num_input' data-key='9' bindtap='tapKey'>9</button>
     </view>
     <view class='keyboard-row'>
-      <button class='num_input'></button>
+      <button class='num_input' bindtap='tapC'>C</button>
       <button class='num_input' data-key='0' bindtap='tapKey'>0</button>
       <button class='num_input' bindtap='tapDel'>←</button>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal bottom-modal {{modalName=='delete'?'show':''}}">
+  <view class="cu-dialog"  style="background-color:white">
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="delete_data">确定</view>
+      <view class="action text-blue" bindtap="hideModal">取消</view>
+    </view>
+    <view class="padding-xl">
+      是否删除该项自定义数据？
     </view>
   </view>
 </view>

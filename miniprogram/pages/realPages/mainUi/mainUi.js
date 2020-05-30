@@ -1,4 +1,5 @@
 // pages/realPages/mainUi/mainUi.js
+ 
 Page({
 
   /**
