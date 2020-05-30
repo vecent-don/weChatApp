@@ -75,8 +75,7 @@ Page({
     let that = this 
     this.setData({ 
       dates: e.detail.value 
-    }) 
-    console.log(that.data.open_id,that.data.date) 
+    })  
     db.collection('userMenu').where({ 
       _openid:that.data.open_id, 
       date:that.data.dates 
@@ -103,7 +102,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     let that = this 
     var time = util.formatDate(new Date()); 
     this.setData({ 
@@ -121,6 +119,24 @@ Page({
         console.log("获取openid失败",res) 
       } 
     }) 
+    console.log("here",app.globalData._openid,time)
+    db.collection('userMenu').where({ 
+      _openid:app.globalData._openid, 
+      date:time
+    }).get({ 
+      success(res){ 
+        console.log(res) 
+        that.setData({ 
+          breakfast:res.data[0].breakfast, 
+          lunch:res.data[0].lunch, 
+          dinner:res.data[0].dinner, 
+          other:res.data[0].other 
+        }) 
+      },
+      fail(res){
+        console.log(res)
+      } 
+    })
   },
 
   /**

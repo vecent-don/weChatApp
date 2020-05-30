@@ -3,7 +3,6 @@
   sum=0;
   var add=function(n){
     sum=Number(n)+sum;
-    
   }
   var getSum=function(){
     a=sum;
@@ -12,6 +11,7 @@
   }
   module.exports.getSum=getSum;
 </wxs>     
+
 <view bindtap="getdata"></view>
 <view class="root">
   <view class="section">  
@@ -38,7 +38,7 @@
       <view class="calorie_hint">
         <text class="hint_2">今日消耗（千卡）</text>
       </view>
-    </view>ss
+    </view>
     <view class="container">
       <view class="calorie_num">
         <text class="num_3">{{calorie_potential}}</text>
@@ -56,32 +56,23 @@
         <image src="../../../images/breakfast.png"></image>
       </view>
       <view class="type">
-        <text>  早餐</text>
+        <view style="font-size:125%"> 早餐</view>
       </view>
       <view class="ka">
-        
         <view wx:for="{{datalist}}" wx:for-key="_id">
           <view  wx:if="item._id=d721728a5ecd109400435e0f199b876b">
-          <text>{{item._id}}</text>
+          <text></text>
           </view>
         </view>
         <text class="iconfont {{selectedFlag[0]?'icon-shangjiantou':'icon-xiala'}} "></text>
-        
       </view>
     </view>
 
     <view hidden="{{!selectedFlag[0]}}"   bindtap="getdata">
-      <view wx:for="{{datalist}}">
-        <view wx:for="{{item.breakfast}}" wx:for-item="bk">
-          <view class="list bg-gray">
-            <view class="left">{{bk.name}}</view>
-            <view class="right">{{bk.heat}}千卡</view>
-          </view>
-        </view>
-      </view>
-      <block wx:for="{{list01}}" wx:for-item="item" wx:for-index="index">
-        <view class="list bg-gray">
-          <view></view>
+      <block wx:for="{{breakfast}}" wx:for-item="bk">
+        <view class="item_detail">
+          <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
+          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.heat}}千卡</view>
         </view>
       </block>
     </view>
@@ -91,7 +82,7 @@
         <image src="../../../images/lunch.png"></image>
       </view>
       <view class="type">
-        <text>  午餐</text>
+        <text style="font-size:125%">  午餐</text>
       </view>
       <view class="ka">
         <text>{{messageOfLunch}}</text>
@@ -102,18 +93,13 @@
 
     <view hidden="{{!selectedFlag[1]}}"   bindtap="getdata">
       <view wx:for="{{datalist}}">
-        <view wx:for="{{item.lunch}}" wx:for-item="bk">
-          <view class="list bg-gray">
+        <view wx:for="{{lunch}}" wx:for-item="bk">
+          <view class="list">
             <view class="left">{{bk.name}}</view>
             <view class="right">{{bk.heat}}千卡</view>
           </view>
         </view>
       </view>
-      <block wx:for="{{list02}}" wx:for-item="item" wx:for-index="index">
-        <view class="list bg-gray">
-         <view>展开1</view>
-        </view>
-      </block>
     </view>
 
     <view class="list" bindtap="changeToggle" data-index="2">
@@ -121,7 +107,7 @@
         <image src="../../../images/dinner.png"></image>
       </view>
       <view class="type">
-        <text>  晚餐</text>
+        <text style="font-size:125%">  晚餐</text>
       </view>
       <view class="ka">
         <text>{{messageOfDinner}}
@@ -140,11 +126,6 @@
           </view>
         </view>
       </view>
-      <block wx:for="{{list03}}" wx:for-item="item" wx:for-index="index">
-        <view class="list bg-gray">
-         <view>展开1</view>
-        </view>
-      </block>
     </view>
 
     <view class="list" bindtap="changeToggle" data-index="3">
@@ -152,7 +133,7 @@
         <image src="../../../images/exture.png"></image>
       </view>
       <view class="type">
-        <text>  加餐</text>
+        <text style="font-size:125%">  加餐</text>
       </view>
       <view class="ka">
         <text>{{messageOfExture}}</text>
@@ -165,16 +146,11 @@
       <view wx:for="{{datalist}}">
         <view wx:for="{{item.other}}" wx:for-item="bk">
           <view class="list bg-gray">
-            <view class="left">{{bk.name}}</view>
-            <view class="right">{{bk.heat}}千卡</view>
+            <view class="left" style="font-size:50%" >{{bk.name}}</view>
+            <view class="right" style="font-size:50%">{{bk.heat}}千卡</view>
           </view>
         </view>
       </view>
-      <block wx:for="{{list04}}" wx:for-item="item" wx:for-index="index">
-        <view class="list bg-gray">
-          <view>展开1</view>
-       </view>
-      </block>
     </view>
 
    

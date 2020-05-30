@@ -52,18 +52,32 @@ page{
   background-color: #fff;
 }
 
+
+
 .list {
   background-color: #fff;
   display: flex;
   justify-content: space-between;
-  font-size: 34rpx;
-  width: 92%;
+  font-size: 75%;
+  width: 100%;
   padding: 0 4%;
-  height: 100rpx;
+  line-height: 40rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.item_detail{
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 100%;
+  width: 100%;
+  padding: 0 4%;
+  height: 55px;
   line-height: 100rpx;
   border-bottom: 1rpx solid #f1f1f1;
 }
-
+.c_szie{
+  font-size: 50%;
+}
 .bg-gray{
   background-color: #ccc!important;
   border-bottom: 1rpx solid  #fff!important;
@@ -86,6 +100,7 @@ color: #fe2e2e;
   flex:1;
   text-align: left;
   font-size: 10px;
+  margin-top: 25rpx;
 }
 
 .ka{
@@ -98,4 +113,5 @@ color: #fe2e2e;
 .picture image{
   height: 40px;
   width: 40px;
+  margin-top: 10rpx;
 }
