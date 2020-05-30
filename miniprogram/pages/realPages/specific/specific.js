@@ -51,7 +51,7 @@ function initChart(canvas, width, height) {
 	return chart;
  }
 
- 
+
 Page({
 
 	/**

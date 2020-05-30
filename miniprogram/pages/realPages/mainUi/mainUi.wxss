@@ -11,7 +11,8 @@ page{
 }
 
 .section{
-  background:rgb(197, 204, 196);
+  justify-content: center;
+  background:rgb(225, 230, 225);
   margin:10rpx;
   padding:20rpx
 }
