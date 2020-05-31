@@ -1,18 +1,5 @@
 <!--pages/realPages/mainUi/mainUi.wxml-->
-<wxs module="m1">
-  sum=0;
-  var add=function(n){
-    sum=Number(n)+sum;
-  }
-  var getSum=function(){
-    a=sum;
-    sum=0;
-    return a;
-  }
-  module.exports.getSum=getSum;
-</wxs>     
 
-<view bindtap="getdata"></view>
 <view class="root">
   <view class="section">  
     <picker mode="date" value="{{date}}" start="1978-01-01" end="2099-12-31" bindchange="bindDateChange">  
@@ -59,16 +46,12 @@
         <view style="font-size:125%"> 早餐</view>
       </view>
       <view class="ka">
-        <view wx:for="{{datalist}}" wx:for-key="_id">
-          <view  wx:if="item._id=d721728a5ecd109400435e0f199b876b">
-          <text></text>
-          </view>
-        </view>
+        <text>{{messageOfBreakfast}}</text>
         <text class="iconfont {{selectedFlag[0]?'icon-shangjiantou':'icon-xiala'}} "></text>
       </view>
     </view>
 
-    <view hidden="{{!selectedFlag[0]}}"   bindtap="getdata">
+    <view hidden="{{!selectedFlag[0]}}">
       <block wx:for="{{breakfast}}" wx:for-item="bk">
         <view class="item_detail">
           <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
@@ -91,15 +74,13 @@
       </view>
     </view>
 
-    <view hidden="{{!selectedFlag[1]}}"   bindtap="getdata">
-      <view wx:for="{{datalist}}">
-        <view wx:for="{{lunch}}" wx:for-item="bk">
-          <view class="list">
-            <view class="left">{{bk.name}}</view>
-            <view class="right">{{bk.heat}}千卡</view>
-          </view>
+    <view hidden="{{!selectedFlag[1]}}">
+      <block wx:for="{{lunch}}" wx:for-item="bk">
+        <view class="item_detail">
+          <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
+          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.heat}}千卡</view>
         </view>
-      </view>
+      </block>
     </view>
 
     <view class="list" bindtap="changeToggle" data-index="2">
@@ -117,13 +98,11 @@
       </view>
     </view>
     
-    <view hidden="{{!selectedFlag[2]}}"  bindtap="getdata">
-      <view wx:for="{{datalist}}">
-        <view wx:for="{{item.dinner}}" wx:for-item="bk">
-          <view class="list bg-gray">
-            <view class="left">{{bk.name}}</view>
-            <view class="right">{{bk.heat}}千卡</view>
-          </view>
+    <view hidden="{{!selectedFlag[2]}}">
+      <view wx:for="{{dinner}}">
+        <view class="list bg-gray">
+          <view class="left" style="font-size:50%">{{item.name}}</view>
+          <view class="left" style="font-size:50%">{{item.heat}}</view>
         </view>
       </view>
     </view>
@@ -142,15 +121,13 @@
       </view>
     </view>
 
-    <view hidden="{{!selectedFlag[3]}}"  bindtap="getdata">
-      <view wx:for="{{datalist}}">
-        <view wx:for="{{item.other}}" wx:for-item="bk">
-          <view class="list bg-gray">
-            <view class="left" style="font-size:50%" >{{bk.name}}</view>
-            <view class="right" style="font-size:50%">{{bk.heat}}千卡</view>
-          </view>
+    <view hidden="{{!selectedFlag[3]}}">
+      <block wx:for="{{other}}" wx:for-item="bk">
+        <view class="item_detail">
+          <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
+          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.heat}}千卡</view>
         </view>
-      </view>
+      </block>
     </view>
 
    
@@ -159,7 +136,7 @@
         <image src="../../../images/exercise.png"></image>
       </view>
       <view class="type">
-        <text>  运动</text>
+        <text style="font-size:125%">  运动</text>
       </view>
       <view class="ka">
         <text>{{messageOfExercise}}</text>
@@ -168,11 +145,12 @@
       </view>
     </view>
     
-    <view hidden="{{!selectedFlag[4]}}"  bindtap="getdata">
-      <block wx:for="{{list05}}" wx:for-item="item" wx:for-index="index">
-        <view class="list bg-gray">
-          <view>展开1</view>
-       </view>
+    <view hidden="{{!selectedFlag[4]}}">
+      <block wx:for="{{other}}" wx:for-item="bk">
+        <view class="item_detail">
+          <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
+          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.heat}}千卡</view>
+        </view>
       </block>
     </view>
   </view>

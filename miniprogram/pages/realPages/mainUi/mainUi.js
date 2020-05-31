@@ -18,42 +18,22 @@ Page({
     calorie_taken_in: 0,
     calorie_burned: 0,
     calorie_potential: 2000,
-    messageOfBreakfast:"未设置",
-    messageOfLunch:"未设置",
-    messageOfDinner:"未设置",
-    messageOfExercise:"未设置",
-    messageOfExture:"未设置",
+    messageOfBreakfast:0,
+    messageOfLunch:0,
+    messageOfDinner:0,
+    messageOfExercise:0,
+    messageOfExture:0,
     datalist:[],
-    open_id:"",
-    breakfastall:[],
-    //breakfast
-    list01: [
-      { item_id: 1 }, { item_id: 11 }, { item_id: 11 },
-    ],
-    list02: [
-
-    ],
-    list03: [
-      { item_id: 11 }, { item_id: 11 }
-    ],
-    list04: [
-      { item_id: 11 }, { item_id: 11 }, { item_id: 11 }
-    ],
-    list05: [
-      { item_id: 11 }, { item_id: 11 }, { item_id: 11 }
-    ],
+    _openid:"",
+    breakfast:[],
+    lunch:[],
+    dinner:[],
+    other:[],
   
   
   // 展开折叠
      selectedFlag: [false, false, false, false, false]
 
-  },
-
-  dailyeating:function(){
-    let that=this;
-    DataBase_userMenu.where({
-      _openid:that.data.open_id
-    })
   },
 
   // 展开折叠选择  
@@ -110,12 +90,31 @@ Page({
     wx.cloud.callFunction({ 
       name:"get_openid", 
       success(res){ 
-        console.log("获取openid成功") 
+        console.log("获取openid成功",res.data) 
         getApp().globalData._openid = res.result.openid 
+        db.collection('userMenu').where({ 
+          _openid:app.globalData._openid, 
+          date:time
+       }).get({ 
+         success(res){ 
+         console.log(res) 
+         that.setData({ 
+           breakfast:res.data[0].breakfast, 
+           lunch:res.data[0].lunch, 
+           dinner:res.data[0].dinner, 
+           other:res.data[0].other 
+        }) 
+      },
+      fail(res){
+        console.log(res)
+      } 
+    })
         that.setData({ 
           open_id: res.result.openid 
         }) 
-      },fail(res){ 
+        
+      },
+      fail(res){ 
         console.log("获取openid失败",res) 
       } 
     }) 
@@ -143,7 +142,47 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
+    let that=this
+    wx.cloud.database().collection("userMenu").get({
+      success(res){
+        console.log("请求成功",res.data[0].breakfast[0].length)
+        that.setData({
+          datalist:res.data,
+          breakfast:res.data[0].breakfast,
+          lunch:res.data[0].lunch,
+          dinner:res.data[0].dinner,
+          other:res.data[0].other,
+          messageOfBreakfast:res.data[0].breakfast[0].heat
+        })
+        
+       if(breakfast.length!=0){
+        for(i in breakfast){
+          messageOfBreakfast+=i.heat;
+        }
+       }
+       console(messageOfBreakfast,breakfast[0].heat)
+       if(lunch.length!=0){
+         for(var i=0;i<lunch.length;i++){
+            messageOfLunch+=lunch[i].heat;
+         }
+       }
+       if(dinner.length!=0){
+        for(var i=0;i<dinner.length;i++){
+          messageOfDinner+=dinner[i].heat;
+        }
+       }
+       if(other.length!=0){
+        for(var i=0;i<other.length;i++){
+          messageOfExture+=other[i].heat;
+          messageOfExercise+=other[i].heat;
+        }
+       }
+      },
+      fail(res){
+        console.log("请求失败",res)
+      }
+    })
   },
 
   /**
@@ -186,21 +225,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  getdata(){
-
-    let that=this
-    wx.cloud.database().collection("userMenu").get({
-      success(res){
-        console.log("请求成功",res)
-        that.setData({
-          datalist:res.data,
-          breakfastall:res.data.breakfast
-        })
-      },
-      fail(res){
-        console.log("请求失败",res)
-      }
-    })
   }
 })
