@@ -7,36 +7,37 @@
       <text class="margin-top-sm">{{userInfo.nickName}}</text>
     </block>
     </view>
-    <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+   
   </view>
   <view class="padding flex text-center text-grey bg-white shadow-warp">
     <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-orange">{{visitTotal}}</view>
+      <view class="text-xxl text-orange">{{nowWeight}}</view>
         <view class="margin-top-sm">
          当前体重（KG）
         </view>
     </view>
     <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-blue">{{starCount}}</view>
+      <view class="text-xxl text-blue">{{targetWeight}}</view>
       <view class="margin-top-sm">
        目标体重（KG）</view>
     </view>
     <view class="flex flex-sub flex-direction">
-      <view class="text-xxl text-green">{{forksCount}}</view>
+      <view class="text-xxl text-green">{{BMI}}</view>
       <view class="margin-top-sm">
          BMI指数</view>
     </view>
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
     
-    <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/log/log" hover-class="none">
+    <view class="cu-item arrow" bindtap="showModal"  data-target="bottomModal">
+        <navigator class="content"  hover-class="none">
         <text class="cuIcon-formfill text-green"></text>
-        <text class="text-grey">体重分析</text>
-      </navigator>
+        <text class="text-grey">个人信息完善</text>
+        </navigator>
+
     </view>
     <view class="cu-item arrow">
-         <navigator class="content" url="/pages/about/test/list" hover-class="none">
+         <navigator class="content" url="../timeLine/timeLine" hover-class="none">
           <text class="cuIcon-calendar text-red"></text>
         <text class="text-grey">体重记录</text>
       </navigator>
@@ -51,3 +52,25 @@
   <view class="cu-tabbar-height"></view>
 </scroll-view>
 
+
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+
+  <view class="cu-dialog"  style="background-color:white">
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="addData">确定</view>
+      <view class="action text-blue" bindtap="hideModal">取消</view>
+    </view>
+    
+ 
+ <view class="title">当前体重(kg)：</view>
+<input placeholder="请填写你的当前体重" bindinput="getInput_nowWeight"></input>
+<view class="title">目标体重(kg)：</view>
+<input placeholder="请填写你的目标体重" bindinput="getInput_targetWeight"></input>
+ <view class="title">身高(cm)：</view>
+<input placeholder="请填写你的身高" bindinput="getInput_height"></input>
+
+  
+
+  </view>
+
+</view>

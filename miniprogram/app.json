@@ -1,14 +1,14 @@
 {
   "pages": [
-    
+    "pages/realPages/mainUi/mainUi",
     "pages/index/index",
     "pages/logs/logs",
     "pages/page2/index2",
     "pages/realPages/analysis/analysis",
     "pages/realPages/userInfo/userInfo",
     "pages/realPages/recipe/recipe",
-    "pages/realPages/mainUi/mainUi",
-    "pages/realPages/specific/specific"
+    "pages/realPages/specific/specific",
+    "pages/realPages/timeLine/timeLine"
   ],
   "window": {
     "backgroundTextStyle": "light",

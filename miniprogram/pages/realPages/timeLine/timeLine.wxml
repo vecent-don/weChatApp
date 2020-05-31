@@ -1,0 +1,20 @@
+<!--miniprogram/pages/realPages/timeLine/timeLine.wxml-->
+
+
+ <view scroll-y="true">
+  <view  wx:for="{{cloud_list}}" wx:for-item = "item" wx:for-index="current_index">
+  <view class="cu-timeline" >
+  <view class="cu-time">{{item.date}}</view>
+    <view class="cu-item {{colorIcon[current_index%6]}}">
+    <view class="content {{colorContent[current_index%6]}} shadow-blur">
+     {{description[current_index%3]}}:{{item.weight}}kg!
+    </view>
+   </view>
+  
+  </view>
+
+ </view>
+
+
+
+</view>

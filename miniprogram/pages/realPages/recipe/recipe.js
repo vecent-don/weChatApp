@@ -45,7 +45,10 @@ Page({
         console.log(res)
         that.setData({
           search_list:res.result.data
+         
         })
+        console.log("here")
+        console.log(res)
       },fail(res){
         console.log(res)
       }
@@ -276,6 +279,9 @@ Page({
         else{
           that.addDataToMenu();
         }
+        list_tmp.add({heat,food_name,food_weight})
+
+        console.log("??",list_tmp)
       },
       fail(res){
         console.log("添加失败",res)
