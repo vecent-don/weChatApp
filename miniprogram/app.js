@@ -39,9 +39,6 @@ App({
       name:"get_openid",
       success(res){
         console.log("获取openid成功")
-        that.setData({
-          _openid: res.result.openid
-        })
       },fail(res){
         console.log("获取openid失败",res)
       }

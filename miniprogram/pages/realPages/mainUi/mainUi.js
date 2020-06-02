@@ -24,11 +24,9 @@ Page({
     messageOfExercise:0,
     messageOfExture:0,
     datalist:[],
-    _openid:"",
-    breakfast:[],
-    lunch:[],
-    dinner:[],
-    other:[],
+    open_id:"",
+    breakfastall:[],
+    //breakfast
   
   
   // 展开折叠
@@ -44,7 +42,6 @@ Page({
    }else{
       this.data.selectedFlag[index] = true;
     }
-
     this.setData({
       selectedFlag: this.data.selectedFlag
    })
@@ -61,12 +58,34 @@ Page({
       date:that.data.dates 
     }).get({ 
       success(res){ 
-        console.log(res) 
+        console.log(res)
+        var breakfast_take_in = 0
+        for(var i = 0;i<res.data[0].breakfast.length;i++){
+          breakfast_take_in +=  Number(res.data[0].breakfast[i].heat)*Number(res.data[0].breakfast[i].weight)/ Number(res.data[0].breakfast[i].amount)
+        }
+        var lunch_take_in = 0
+        for(var i = 0;i<res.data[0].lunch.length;i++){
+          lunch_take_in +=  Number(res.data[0].lunch[i].heat)*Number(res.data[0].lunch[i].weight)/ Number(res.data[0].lunch[i].amount)
+        }
+        var dinner_take_in = 0
+        for(var i = 0;i<res.data[0].dinner.length;i++){
+          dinner_take_in +=  Number(res.data[0].dinner[i].heat)*Number(res.data[0].dinner[i].weight)/ Number(res.data[0].dinner[i].amount)
+        }
+        var other_take_in = 0
+        for(var i = 0;i<res.data[0].other.length;i++){
+          other_take_in +=  Number(res.data[0].other[i].heat)*Number(res.data[0].other[i].weight)/ Number(res.data[0].other[i].amount)
+        }
+        var take_in = breakfast_take_in+lunch_take_in+dinner_take_in+other_take_in
         that.setData({ 
           breakfast:res.data[0].breakfast, 
           lunch:res.data[0].lunch, 
           dinner:res.data[0].dinner, 
-          other:res.data[0].other 
+          other:res.data[0].other,
+          messageOfBreakfast:breakfast_take_in,
+          messageOfDinner:dinner_take_in,
+          messageOfLunch:lunch_take_in,
+          messageOfExture:other_take_in,
+          calorie_taken_in: take_in
         }) 
       } 
     }) 
@@ -82,7 +101,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this 
+    let that = this
     var time = util.formatDate(new Date()); 
     this.setData({ 
       dates:time 
@@ -90,106 +109,69 @@ Page({
     wx.cloud.callFunction({ 
       name:"get_openid", 
       success(res){ 
-        console.log("获取openid成功",res.data) 
+        console.log("获取openid成功") 
         getApp().globalData._openid = res.result.openid 
-        db.collection('userMenu').where({ 
-          _openid:app.globalData._openid, 
-          date:time
-       }).get({ 
-         success(res){ 
-         console.log(res) 
-         that.setData({ 
-           breakfast:res.data[0].breakfast, 
-           lunch:res.data[0].lunch, 
-           dinner:res.data[0].dinner, 
-           other:res.data[0].other 
-        }) 
-      },
-      fail(res){
-        console.log(res)
-      } 
-    })
         that.setData({ 
           open_id: res.result.openid 
         }) 
-        
-      },
-      fail(res){ 
+      },fail(res){ 
         console.log("获取openid失败",res) 
       } 
     }) 
-    console.log("here",app.globalData._openid,time)
-    db.collection('userMenu').where({ 
-      _openid:app.globalData._openid, 
-      date:time
-    }).get({ 
-      success(res){ 
-        console.log(res) 
-        that.setData({ 
-          breakfast:res.data[0].breakfast, 
-          lunch:res.data[0].lunch, 
-          dinner:res.data[0].dinner, 
-          other:res.data[0].other 
-        }) 
-      },
-      fail(res){
-        console.log(res)
-      } 
-    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
-    let that=this
-    wx.cloud.database().collection("userMenu").get({
-      success(res){
-        console.log("请求成功",res.data[0].breakfast[0].length)
-        that.setData({
-          datalist:res.data,
-          breakfast:res.data[0].breakfast,
-          lunch:res.data[0].lunch,
-          dinner:res.data[0].dinner,
-          other:res.data[0].other,
-          messageOfBreakfast:res.data[0].breakfast[0].heat
-        })
-        
-       if(breakfast.length!=0){
-        for(i in breakfast){
-          messageOfBreakfast+=i.heat;
-        }
-       }
-       console(messageOfBreakfast,breakfast[0].heat)
-       if(lunch.length!=0){
-         for(var i=0;i<lunch.length;i++){
-            messageOfLunch+=lunch[i].heat;
-         }
-       }
-       if(dinner.length!=0){
-        for(var i=0;i<dinner.length;i++){
-          messageOfDinner+=dinner[i].heat;
-        }
-       }
-       if(other.length!=0){
-        for(var i=0;i<other.length;i++){
-          messageOfExture+=other[i].heat;
-          messageOfExercise+=other[i].heat;
-        }
-       }
-      },
-      fail(res){
-        console.log("请求失败",res)
-      }
-    })
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    console.log("here",app.globalData._openid)
+    db.collection('userMenu').where({ 
+      _openid:app.globalData._openid, 
+      date:that.data.dates
+    }).get({ 
+      success(res){ 
+        console.log(res) 
+        var breakfast_take_in = 0
+        for(var i = 0;i<res.data[0].breakfast.length;i++){
+          breakfast_take_in +=  Number(res.data[0].breakfast[i].heat)*Number(res.data[0].breakfast[i].weight)/ Number(res.data[0].breakfast[i].amount)
+        }
+        var lunch_take_in = 0
+        for(var i = 0;i<res.data[0].lunch.length;i++){
+          lunch_take_in +=  Number(res.data[0].lunch[i].heat)*Number(res.data[0].lunch[i].weight)/ Number(res.data[0].lunch[i].amount)
+        }
+        var dinner_take_in = 0
+        for(var i = 0;i<res.data[0].dinner.length;i++){
+          dinner_take_in +=  Number(res.data[0].dinner[i].heat)*Number(res.data[0].dinner[i].weight)/ Number(res.data[0].dinner[i].amount)
+        }
+        var other_take_in = 0
+        for(var i = 0;i<res.data[0].other.length;i++){
+          other_take_in +=  Number(res.data[0].other[i].heat)*Number(res.data[0].other[i].weight)/ Number(res.data[0].other[i].amount)
+        }
+        var take_in = breakfast_take_in+lunch_take_in+dinner_take_in+other_take_in
+        that.setData({ 
+          breakfast:res.data[0].breakfast, 
+          lunch:res.data[0].lunch, 
+          dinner:res.data[0].dinner, 
+          other:res.data[0].other ,
+          messageOfBreakfast:breakfast_take_in,
+          messageOfDinner:dinner_take_in,
+          messageOfLunch:lunch_take_in,
+          messageOfExture:other_take_in,
+          calorie_taken_in:take_in
+        }) 
+      },
+      fail(res){
+        console.log(res)
+      } 
+    })
   },
 
   /**
@@ -225,5 +207,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
 })

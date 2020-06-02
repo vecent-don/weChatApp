@@ -55,7 +55,7 @@
       <block wx:for="{{breakfast}}" wx:for-item="bk">
         <view class="item_detail">
           <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
-          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.heat}}千卡</view>
+          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.final_heat}}千卡</view>
         </view>
       </block>
     </view>
@@ -78,7 +78,7 @@
       <block wx:for="{{lunch}}" wx:for-item="bk">
         <view class="item_detail">
           <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
-          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.heat}}千卡</view>
+          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.final_heat}}千卡</view>
         </view>
       </block>
     </view>
@@ -100,9 +100,9 @@
     
     <view hidden="{{!selectedFlag[2]}}">
       <view wx:for="{{dinner}}">
-        <view class="list bg-gray">
-          <view class="left" style="font-size:50%">{{item.name}}</view>
-          <view class="left" style="font-size:50%">{{item.heat}}</view>
+        <view class="item_detail">
+          <view class="left" style="font-size:75% margin-bottm：10rpx">{{item.name}}</view>
+          <view class="right" style="font-size:75% margin-bottm：10rpx">{{item.final_heat}}千卡</view>
         </view>
       </view>
     </view>
@@ -125,7 +125,7 @@
       <block wx:for="{{other}}" wx:for-item="bk">
         <view class="item_detail">
           <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
-          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.heat}}千卡</view>
+          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.fianl_heat}}千卡</view>
         </view>
       </block>
     </view>
