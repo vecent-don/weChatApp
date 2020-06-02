@@ -100,6 +100,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.onLoad();
     console.log("执行onShow")
     let that = this;
     //计算message
