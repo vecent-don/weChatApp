@@ -4,7 +4,7 @@
   <view class="section">  
     <picker mode="date" value="{{date}}" start="1978-01-01" end="2099-12-31" bindchange="bindDateChange">  
       <view class="picker">  
-        日期: {{dates}}  
+        日期: {{date}}  
       </view>  
     </picker>  
   </view> 
