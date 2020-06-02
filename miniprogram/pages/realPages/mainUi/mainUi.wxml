@@ -115,7 +115,7 @@
         <text style="font-size:125%">  加餐</text>
       </view>
       <view class="ka">
-        <text>{{messageOfExture}}</text>
+        <text>{{messageOfOther}}</text>
         <text class="iconfont {{selectedFlag[3]?'icon-shangjiantou':'icon-xiala'}}">
         </text>
       </view>
