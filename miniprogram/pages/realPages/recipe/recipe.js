@@ -1,4 +1,3 @@
-
 const DataBase_userMenu = wx.cloud.database().collection("userMenu")
 const DataBase_favor =wx.cloud.database().collection("favor")
 const DataBase_userDefined = wx.cloud.database().collection("user_defined")
@@ -183,7 +182,7 @@ Page({
   addDataToMenu(){
     console.log("调用新建数据方法")
     let that = this
-    var list_tmp = [{heat:that.data.food_heat,name:that.data.food_name,weight:that.data.current_weight,amount:that.data.food_amount,unit:that.data.food_unit}]
+    var list_tmp = [{heat:that.data.food_heat,name:that.data.food_name,weight:that.data.current_weight,amount:that.data.food_amount,unit:that.data.food_unit,final_heat:Number(that.data.food_heat)*Number(that.data.current_weight)/Number(that.data.food_amount)}]
     var meal_time = this.data.meal_time
     if(meal_time == 1){
       DataBase_userMenu.add({
@@ -269,7 +268,7 @@ Page({
           else if(meal_time == 2){list_tmp = res.data[0].lunch }
           else if(meal_time == 3){list_tmp = res.data[0].dinner}
           else{list_tmp = res.data[0].other}
-          list_tmp.push({heat:that.data.food_heat,name:that.data.food_name,weight:that.data.current_weight})
+          list_tmp.push({heat:that.data.food_heat,name:that.data.food_name,weight:that.data.current_weight,amount:that.data.food_amount,unit:that.data.food_unit,final_heat:Number(that.data.food_heat)*Number(that.data.current_weight)/Number(that.data.food_amount)})
           that.setData({
             list_tmp:list_tmp
           })

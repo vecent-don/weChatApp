@@ -4,6 +4,7 @@
 App({
   
   onLaunch: function () {
+    let that = this
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -50,6 +51,14 @@ App({
             }
           })
         }
+      }
+    })
+    wx.cloud.callFunction({
+      name:"get_openid",
+      success(res){
+        console.log("获取openid成功")
+      },fail(res){
+        console.log("获取openid失败",res)
       }
     })
   },

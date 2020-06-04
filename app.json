@@ -38,7 +38,7 @@
       },
       {
         "pagePath": "pages/realPages/userInfo/userInfo",
-        "text": "添加",
+        "text": "我",
         "iconPath": "/images/user.png",
         "selectedIconPath": "/images/user_active.png"
       }
