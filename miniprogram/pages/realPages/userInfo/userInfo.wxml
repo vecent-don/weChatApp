@@ -42,6 +42,12 @@
         <text class="text-grey">体重记录</text>
       </navigator>
     </view>
+        <view class="cu-item arrow">
+         <navigator class="content" url="../weightAnalysis/weightAnalysis?rate={{BMI}}" hover-class="none">
+          <text class="cuIcon-calendar text-red"></text>
+        <text class="text-grey">体重分析</text>
+      </navigator>
+    </view>
     <view class="cu-item arrow">
       <button class="cu-btn content" open-type="feedback">
         <text class="cuIcon-writefill text-cyan"></text>

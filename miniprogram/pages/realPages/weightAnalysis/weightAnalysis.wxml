@@ -1,0 +1,6 @@
+<!--miniprogram/pages/realPages/weightAnalysis/weightAnalysis.js.wxml-->
+<text class="head">您的BMI得分是</text>
+<view class="container">
+	<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecx }}"></ec-canvas>
+</view>
+<text>您现在的体重情况是{{state}}哦</text>
