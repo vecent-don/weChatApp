@@ -9,7 +9,6 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     wx.cloud.init({
       env:"nju-calorie-n006e"
     })
@@ -31,36 +30,28 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo;
-              wx.cloud.callFunction({
-                name:'get_openid',
-                success:res=>{
-                  this.globalData.ids=res.result;
-                  console.log(">>")
-                  console.log(this.globalData.ids)
-                },
-                fail:res=>{
-                  console.log("?")
-                }
-              })     
+              this.globalData.userInfo = res.userInfo; 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
+              // if (this.userInfoReadyCallback) {
+              //   this.userInfoReadyCallback(res)
+              // }
             }
           })
         }
       }
     })
     wx.cloud.callFunction({
-      name:"get_openid",
-      success(res){
-        console.log("获取openid成功")
+      name:"login",
+      success(res){ 
+        console.log(res.result,"ressssssssssss")
+        that.globalData.ids=res.result
+       
       },fail(res){
         console.log("获取openid失败",res)
       }
     })
+
   },
   globalData: {
     userInfo: null,

@@ -1,6 +1,19 @@
 <!--miniprogram/pages/realPages/weightAnalysis/weightAnalysis.js.wxml-->
-<text class="head">您的BMI得分是</text>
+<text></text>
+<view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-title text-orange"></text>您的BMI得分是:
+  </view>
+</view>
 <view class="container">
 	<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecx }}"></ec-canvas>
 </view>
-<text>您现在的体重情况是{{state}}哦</text>
+<view class="cu-chat">
+ <view class="cu-item">
+    <view class="main">
+      <view class="content shadow">
+        <text>您现在的体重情况是{{state}}哦</text>
+      </view>
+    </view>
+  </view>
+</view>

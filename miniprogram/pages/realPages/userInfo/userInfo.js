@@ -1,8 +1,9 @@
 
 
-const app = getApp();
+
 var util = require('../../../utils/util.js')
 const DataBase_user = wx.cloud.database().collection("userInfo")
+ var app = getApp()
 Page({
   data: {
     modalName:null,
@@ -29,15 +30,15 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
+    // } else if (this.data.canIUse){
+    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //   // 所以此处加入 callback 以防止这种情况
+    //   app.userInfoReadyCallback = res => {
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+    //   }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
@@ -51,11 +52,12 @@ Page({
       })
     }
     var temp={}
-   
-     wx.cloud.database().collection('userInfo').where({openid:app.globalData.ids.openid}).get()
+   console.log(app.globalData)
+     wx.cloud.database().collection('userInfo').where({_openid:app.globalData.ids.openid}).get()
     .then(res=>{
+     
       temp=res.data[0];
-      
+      console.log(res,temp)
       this.setData({
         'nowWeight':temp.nowWeight,
         'targetWeight':temp.targetWeight,
@@ -67,19 +69,19 @@ Page({
     ;
    
   },
-   onReady: function () {
-    wx.cloud.database().collection('userInfo').where({openid:app.globalData.ids.openid}).get()
-    .then(res=>{
-      temp=res.data[0];
+   onReady: function () {  
+    // wx.cloud.database().collection('userInfo').where({openid:app.globalData.ids.openid}).get()
+    // .then(res=>{
+    //   temp=res.data[0];
       
-      this.setData({
-        'nowWeight':temp.nowWeight,
-        'targetWeight':temp.targetWeight,
-        'BMI':(temp.nowWeight/(temp.height*temp.height/10000)).toFixed(2)
-      })
+    //   this.setData({
+    //     'nowWeight':temp.nowWeight,
+    //     'targetWeight':temp.targetWeight,
+    //     'BMI':(temp.nowWeight/(temp.height*temp.height/10000)).toFixed(2)
+    //   })
    
-      console.log(this.BMI)
-    }).catch(err=>{console.log(err)})
+    //   console.log(this.BMI)
+    // }).catch(err=>{console.log(err)})
   },
 
   getUserInfo: function(e) {
@@ -123,30 +125,29 @@ Page({
       modalName: null,
       BMI:(this.data.nowWeight/(this.data.height*this.data.height/10000)).toFixed(2)
     })
- wx.cloud.callFunction({
-  name:'update_Info',
-  data:{
-    'nowWeight':that.data.nowWeight,
-    'targetWeight': that.data.targetWeight,
-    'height':that.data.height
-  },
-}).then(res=>{
-  console.log("dsd")
-console.log(res)
-});
-
-// 'date':util.formatDate(new Date()),
-  wx.cloud.callFunction({
-  name:'update_TimeLine',
-  data:{
-    
-    "nowWeight": that.data.nowWeight,
-  "date": util.formatDate(new Date()),    
-  },
+    wx.cloud.callFunction({
+    name:'update_Info',
+    data:{
+      'nowWeight':that.data.nowWeight,
+      'targetWeight': that.data.targetWeight,
+      'height':that.data.height
+    },
   }).then(res=>{
-    console.log("sd")
-    console.log(res)
+  console.log("dsd")
+  console.log(res)
   });
 
-  },
+  // 'date':util.formatDate(new Date()),
+    wx.cloud.callFunction({
+    name:'update_TimeLine',
+    data:{ 
+     "nowWeight": that.data.nowWeight,
+     "date": util.formatDate(new Date()),    
+    },
+    }).then(res=>{
+      console.log("sd")
+      console.log(res)
+    });
+
+    },
 });

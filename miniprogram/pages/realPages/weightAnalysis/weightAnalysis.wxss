@@ -1,9 +1,9 @@
 .container{
-  padding-top:80rpx;
+  /* padding-top:20rpx; */
   width:100%;
-  height:1000rpx
+  height:600rpx
 }
 ec-canvas {
   width: 100%;
-  height: 100%;
+  height: 125%;
 }
