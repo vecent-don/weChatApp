@@ -21,10 +21,13 @@
 <view hidden="{{currentTab!==0}}" class='fir_page' style="z-idnex:5">
   <view scroll-y = "true ">
     <view class = "item-content" wx:for="{{cloud_list}}" wx:for-item = "item" wx:for-index="current_index" >
-      <view class="detail" bindtap="showModal" data-id="{{item._id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" data-amount='{{item.amount}}' data-unit='{{item.unit}}'>
+      <view class="detail" bindtap="showModal" data-id="{{item._id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" data-amount='{{item.amount}}' data-unit='{{item.unit}}' data-ishealthy='{{item.ishealthy}}'>
+        <view class="dot" wx:if="{{item.ishealthy == '0'}}"></view>
+        <view class="dot1" wx:elif="{{item.ishealthy == '1'}}"></view>
+        <view class="dot2" wx:else="{{item.ishealthy == '2'}}"></view>
         <view class="name_style"> {{item.name}} </view>
         <view class="heat_style"> {{item.heat}}</view>
-        <view class="qianka">千卡</view>
+        <view class="qianka">千卡/100g</view>
       </view>
       <view class="div_line"> </view>
     </view>
@@ -34,7 +37,10 @@
 <view hidden="{{currentTab!==1}}" class='fir_page' style="z-idnex:5">
   <view scroll-y = "true ">
     <view class = "item-content" wx:for="{{favor_list}}" wx:for-item = "item" wx:for-index="current_index" >
-      <view class="detail" bindtap="showModal" data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" data-amount='{{item.amount}}' data-unit='{{item.unit}}'>
+      <view class="detail" bindtap="showModal" data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" data-amount='{{item.amount}}' data-unit='{{item.unit}}' data-ishealthy='{{item.ishealthy}}'>
+        <view class="dot" wx:if="{{item.ishealthy == '0'}}"></view>
+        <view class="dot1" wx:elif="{{item.ishealthy == '1'}}"></view>
+        <view class="dot2" wx:else="{{item.ishealthy == '2'}}"></view>
         <view class="name_style"> {{item.name}} </view>
         <view class="heat_style"> {{item.heat}}</view>
         <view class="qianka">千卡</view>
@@ -48,8 +54,8 @@
   <view scroll-y = "true ">
     <view class="add_self" bindtap="add_user_def" data-target="addition">⊕添加自定义</view>
     <view class = "item-content" wx:for="{{userDefined_list}}" wx:for-item = "item" wx:for-index="current_index" >
-      <view class="detail" bindlongpress="delete_item"  data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" bindtap="showModal" data-unit="{{item.unit}}" data-amount="{{item.amount}}">
-        <view class="name_style"> {{item.name}} </view>
+      <view class="detail" bindlongpress="delete_item"  data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" bindtap="showModal" data-unit="{{item.unit}}" data-amount="{{item.amount}}" data-ishealthy='{{item.ishealthy}}'>
+        <view class="name_style"> <text class='text-grey'>{{item.name}}</text> </view>
         <view class="heat_style"> {{item.heat}}</view>
         <view class="qianka">千卡/{{item.amount}}{{item.unit}}</view>
       </view>

@@ -84,7 +84,7 @@ Page({
 			}).get({
 				success(res){
 					var list_tmp = res.data[0].food_list
-					list_tmp.push({name:that.data.xname,heat:that.data.xheat,id:that.data.current_id,amount:that.data.xamount,unit:that.data.xunit})
+					list_tmp.push({name:that.data.xname,heat:that.data.xheat,id:that.data.current_id,amount:that.data.xamount,unit:that.data.xunit,ishealthy:that.data.xhealthy})
 					console.log(list_tmp)
 					wx.cloud.callFunction({
 						name:"update_favor",
@@ -169,7 +169,8 @@ Page({
 						xname:res.data.name,
 						xheat:res.data.heat,
 						xamount:res.data.amount,
-						xunit:res.data.unit
+						xunit:res.data.unit,
+						xhealthy:res.data.ishealthy
 					})
 					console.log(xx.data.xfat)
 				},

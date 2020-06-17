@@ -4,7 +4,20 @@ cloud.init()
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
-  if(event.meal_time == 1){
+  if(event.meal_time == 0){
+    try{
+      return  await db.collection("userMenu").where({
+        _openid:event._openid,
+        date:event.date
+      }).update({
+        data:{
+          sport:event.list_tmp
+        }
+      })
+    }
+    catch(e){ console.error(e)}
+  }
+  else if(event.meal_time == 1){
     try{
       return  await db.collection("userMenu").where({
         _openid:event._openid,

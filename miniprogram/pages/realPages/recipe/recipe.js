@@ -88,6 +88,7 @@ Page({
         wx.cloud.callFunction({
           name:'add_data_to_userDef',
           data:{
+            sport:false,
             list_tmp:list_tmp,
             _openid:that.data.open_id
           },
@@ -124,7 +125,8 @@ Page({
       food_heat: e.currentTarget.dataset.heat,
       food_id:e.currentTarget.dataset.id,
       food_unit:e.currentTarget.dataset.unit,
-      food_amount:e.currentTarget.dataset.amount
+      food_amount:e.currentTarget.dataset.amount,
+      food_ishealthy:e.currentTarget.dataset.ishealthy,
     })
   },
   hideModal(e) {
@@ -191,7 +193,8 @@ Page({
           date:that.data.current_date,
           dinner:[],
           lunch:[],
-          other:[]
+          other:[],
+          sport:[],
         },
         success(res){
           that.setData({
@@ -206,7 +209,8 @@ Page({
           date:that.data.current_date,
           dinner:[],
           lunch:list_tmp,
-          other:[]
+          other:[],
+          sport:[],
         },
         success(res){
           that.setData({
@@ -221,7 +225,8 @@ Page({
           date:that.data.current_date,
           dinner:list_tmp,
           lunch:[],
-          other:[]
+          other:[],
+          sport:[],
         },
         success(res){
           that.setData({
@@ -236,7 +241,8 @@ Page({
           date:that.data.current_date,
           dinner:[],
           lunch:[],
-          other:list_tmp
+          other:list_tmp,
+          sport:[],
         },
         success(res){
           that.setData({
@@ -278,8 +284,6 @@ Page({
         else{
           that.addDataToMenu();
         }
-        list_tmp.add({heat,food_name,food_weight})
-
         console.log("??",list_tmp)
       },
       fail(res){
@@ -326,6 +330,7 @@ Page({
         wx.cloud.callFunction({
           name:"add_data_to_userDef",
           data:{
+            sport:false,
             list_tmp:list_tmp,
             _openid:that.data.open_id
           },
@@ -401,7 +406,8 @@ Page({
         if(res.data.length == 0){
           DataBase_userDefined.add({
             data:{
-              userDefined_list:[]
+              userDefined_list:[],
+              user_sport_list:[],
             }
           })
         }
