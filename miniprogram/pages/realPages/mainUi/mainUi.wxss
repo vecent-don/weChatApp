@@ -23,16 +23,16 @@ page {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  border-style: solid;
-  border-color: lightgrey;
+  /* border-style: solid;
+  border-color: lightgrey; */
 }
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-style: solid;
-  border-color: greenyellow;
+  /* border-style: solid;
+  border-color: greenyellow; */
 }
 
 .calorie_num {
@@ -41,8 +41,8 @@ page {
   font-size: 15px;
   background-color: #fff;
   color: #222;
-  border-style: solid;
-  border-color: blue;
+  /* border-style: solid;
+  border-color: blue; */
 }
 
 .calorie_hint {
@@ -51,8 +51,8 @@ page {
   font-size: 12px;
   background-color: #fff;
   color: #222;
-  border-style: solid;
-  border-color: purple;
+  /* border-style: solid;
+  border-color: purple; */
 }
 
 .content {
