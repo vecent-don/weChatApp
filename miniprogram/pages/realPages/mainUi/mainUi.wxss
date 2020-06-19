@@ -1,54 +1,62 @@
 /* pages/realPages/mainUi/mainUi.wxss */
-page{
-  height:100%
+page {
+  height: 100%
 }
 
-.root{
-  display:flex;
+.root {
+  display: flex;
   flex-direction: column;
-  height:100%;
-  background-color:#fff;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #fff;
 }
 
-.section{
+/* .section{
   justify-content: center;
   background:rgb(225, 230, 225);
   margin:10rpx;
   padding:20rpx
-}
+} */
 
 .summary_panel {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  border-style: solid;
+  border-color: lightgrey;
 }
 
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  border-style: solid;
+  border-color: greenyellow;
 }
 
 .calorie_num {
-  flex:1;
+  display: flex;
   text-align: center;
   font-size: 15px;
   background-color: #fff;
   color: #222;
-  padding: 10px 0;
-}
- 
-.calorie_hint {
-  flex:1;
-  text-align: center;
-  font-size: 10px;
-  background-color: #fff;
-  color: #222;
-  padding: 10px 0;
+  border-style: solid;
+  border-color: blue;
 }
 
-.content{
-  flex:1;
+.calorie_hint {
+  display: flex;
+  text-align: center;
+  font-size: 12px;
+  background-color: #fff;
+  color: #222;
+  border-style: solid;
+  border-color: purple;
+}
+
+.content {
+  flex: 1;
   background-color: #fff;
 }
 
@@ -64,7 +72,8 @@ page{
   line-height: 40rpx;
   border-bottom: 1rpx solid #f1f1f1;
 }
-.item_detail{
+
+.item_detail {
   background-color: #fff;
   display: flex;
   justify-content: space-between;
@@ -75,42 +84,45 @@ page{
   line-height: 100rpx;
   border-bottom: 1rpx solid #f1f1f1;
 }
-.c_szie{
+
+.c_szie {
   font-size: 50%;
 }
-.bg-gray{
-  background-color: #ccc!important;
-  border-bottom: 1rpx solid  #fff!important;
+
+.bg-gray {
+  background-color: #ccc !important;
+  border-bottom: 1rpx solid #fff !important;
 }
 
-.list.icon-xiala,icon-shangjiantou  {
-color: #999;
-font-size: 28rpx;
+.list.icon-xiala,
+icon-shangjiantou {
+  color: #999;
+  font-size: 28rpx;
 }
 
 .gray {
-color: #8e8e8e;
+  color: #8e8e8e;
 }
 
 .red {
-color: #fe2e2e;
+  color: #fe2e2e;
 }
 
-.type{
-  flex:1;
+.type {
+  flex: 1;
   text-align: left;
   font-size: 10px;
   margin-top: 25rpx;
 }
 
-.ka{
+.ka {
   text-align: right;
   padding-right: 30rpx;
   font-size: 15px;
   color: #ccc;
 }
 
-.picture image{
+.picture image {
   height: 40px;
   width: 40px;
   margin-top: 10rpx;

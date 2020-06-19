@@ -1,159 +1,161 @@
 <!--pages/realPages/mainUi/mainUi.wxml-->
 
 <view class="root">
-  <view class="section">  
-    <picker mode="date" value="{{date}}" start="1978-01-01" end="2099-12-31" bindchange="bindDateChange">  
-      <view class="picker">  
-        日期: {{date}}  
-      </view>  
-    </picker>  
-  </view> 
 
-  <view class="summary_panel">
-    <view class="container">
-      <view class="calorie_num">
-        <text class="num_1">{{calorie_taken_in}}</text>
-      </view>
-      <view class="calorie_hint">
-        <text class="hint_1">今日摄入（千卡）</text>
-      </view>
-    </view>
-    <view class="container">
-      <view class="calorie_num">
-        <text class="num_2">{{calorie_burned}}</text>
-      </view>
-      <view class="calorie_hint">
-        <text class="hint_2">今日消耗（千卡）</text>
-      </view>
-    </view>
-    <view class="container">
-      <view class="calorie_num">
-        <text class="num_3">{{calorie_potential}}</text>
-      </view>
-      <view class="calorie_hint">
-        <text class="hint_3">今日余量（千卡）</text>
-      </view>
-    </view>
-  </view>
+	<view class="cu-form-group">
+		<view class="title">日期选择</view>
+		<picker mode="date" value="{{date}}" start="1978-01-01" end="2099-12-31" bindchange="bindDateChange">
+			<view class="picker">
+				{{date}}
+			</view>
+		</picker>
+	</view>
 
-  
-  <view class="details">
-    <view class="list" bindtap="changeToggle" data-index="0">
-      <view class="picture">
-        <image src="../../../images/breakfast.png"></image>
-      </view>
-      <view class="type">
-        <view style="font-size:125%"> 早餐</view>
-      </view>
-      <view class="ka">
-        <text>{{messageOfBreakfast}}</text>
-        <text class="iconfont {{selectedFlag[0]?'icon-shangjiantou':'icon-xiala'}} "></text>
-      </view>
-    </view>
+	<view class="summary_panel">
+		<view class="container">
+			<view class="calorie_num">
+				<text class="num_1">{{calorie_taken_in}} kcal</text>
+			</view>
+			<view class="calorie_hint">
+				<text class="hint_1">今日摄入</text>
+			</view>
+		</view>
+		<view class="container">
+			<view class="calorie_num">
+				<text class="num_2">{{calorie_burned}} kcal</text>
+			</view>
+			<view class="calorie_hint">
+				<text class="hint_2">今日消耗</text>
+			</view>
+		</view>
+		<view class="container">
+			<view class="calorie_num">
+				<text class="num_3">{{calorie_potential}} kcal</text>
+			</view>
+			<view class="calorie_hint">
+				<text class="hint_3">今日余量</text>
+			</view>
+		</view>
+	</view>
 
-    <view hidden="{{!selectedFlag[0]}}">
-      <block wx:for="{{breakfast}}" wx:for-item="bk">
-        <view class="item_detail">
-          <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
-          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.final_heat}}千卡</view>
-        </view>
-      </block>
-    </view>
-    
-    <view class="list" bindtap="changeToggle" data-index="1">
-      <view class="picture">
-        <image src="../../../images/lunch.png"></image>
-      </view>
-      <view class="type">
-        <text style="font-size:125%">  午餐</text>
-      </view>
-      <view class="ka">
-        <text>{{messageOfLunch}}</text>
-        <text class="iconfont {{selectedFlag[1]?'icon-shangjiantou':'icon-xiala'}}">
+	<view class="details">
+		<view class="list" bindtap="changeToggle" data-index="0">
+			<view class="picture">
+				<image src="../../../images/breakfast.png"></image>
+			</view>
+			<view class="type">
+				<view style="font-size:125%"> 早餐</view>
+			</view>
+			<view class="ka">
+				<text>{{messageOfBreakfast}}</text>
+				<text class="iconfont {{selectedFlag[0]?'icon-shangjiantou':'icon-xiala'}} "></text>
+			</view>
+		</view>
+
+		<view hidden="{{!selectedFlag[0]}}">
+			<block wx:for="{{breakfast}}" wx:for-item="bk">
+				<view class="item_detail">
+					<view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
+					<view class="right" style="font-size:75% margin-bottm：10rpx">{{bk.final_heat}}千卡</view>
+				</view>
+			</block>
+		</view>
+
+		<view class="list" bindtap="changeToggle" data-index="1">
+			<view class="picture">
+				<image src="../../../images/lunch.png"></image>
+			</view>
+			<view class="type">
+				<text style="font-size:125%">  午餐</text>
+			</view>
+			<view class="ka">
+				<text>{{messageOfLunch}}</text>
+				<text class="iconfont {{selectedFlag[1]?'icon-shangjiantou':'icon-xiala'}}">
         </text>
-      </view>
-    </view>
+			</view>
+		</view>
 
-    <view hidden="{{!selectedFlag[1]}}">
-      <block wx:for="{{lunch}}" wx:for-item="bk">
-        <view class="item_detail">
-          <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
-          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.final_heat}}千卡</view>
-        </view>
-      </block>
-    </view>
+		<view hidden="{{!selectedFlag[1]}}">
+			<block wx:for="{{lunch}}" wx:for-item="bk">
+				<view class="item_detail">
+					<view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
+					<view class="right" style="font-size:75% margin-bottm：10rpx">{{bk.final_heat}}千卡</view>
+				</view>
+			</block>
+		</view>
 
-    <view class="list" bindtap="changeToggle" data-index="2">
-      <view class="picture">
-        <image src="../../../images/dinner.png"></image>
-      </view>
-      <view class="type">
-        <text style="font-size:125%">  晚餐</text>
-      </view>
-      <view class="ka">
-        <text>{{messageOfDinner}}
-        <text class="iconfont {{selectedFlag[2]?'icon-shangjiantou':'icon-xiala'}}">
+		<view class="list" bindtap="changeToggle" data-index="2">
+			<view class="picture">
+				<image src="../../../images/dinner.png"></image>
+			</view>
+			<view class="type">
+				<text style="font-size:125%">  晚餐</text>
+			</view>
+			<view class="ka">
+				<text>{{messageOfDinner}}
+				<text class="iconfont {{selectedFlag[2]?'icon-shangjiantou':'icon-xiala'}}">
         </text>
-        </text>
-      </view>
-    </view>
-    
-    <view hidden="{{!selectedFlag[2]}}">
-      <view wx:for="{{dinner}}">
-        <view class="item_detail">
-          <view class="left" style="font-size:75% margin-bottm：10rpx">{{item.name}}</view>
-          <view class="right" style="font-size:75% margin-bottm：10rpx">{{item.final_heat}}千卡</view>
-        </view>
-      </view>
-    </view>
+				</text>
+			</view>
+		</view>
 
-    <view class="list" bindtap="changeToggle" data-index="3">
-      <view class="picture">
-        <image src="../../../images/exture.png"></image>
-      </view>
-      <view class="type">
-        <text style="font-size:125%">  加餐</text>
-      </view>
-      <view class="ka">
-        <text>{{messageOfOther}}</text>
-        <text class="iconfont {{selectedFlag[3]?'icon-shangjiantou':'icon-xiala'}}">
-        </text>
-      </view>
-    </view>
+		<view hidden="{{!selectedFlag[2]}}">
+			<view wx:for="{{dinner}}">
+				<view class="item_detail">
+					<view class="left" style="font-size:75% margin-bottm：10rpx">{{item.name}}</view>
+					<view class="right" style="font-size:75% margin-bottm：10rpx">{{item.final_heat}}千卡</view>
+				</view>
+			</view>
+		</view>
 
-    <view hidden="{{!selectedFlag[3]}}">
-      <block wx:for="{{other}}" wx:for-item="bk">
-        <view class="item_detail">
-          <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
-          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.fianl_heat}}千卡</view>
-        </view>
-      </block>
-    </view>
-
-   
-    <view class="list" bindtap="changeToggle" data-index="4">
-      <view class="picture">
-        <image src="../../../images/exercise.png"></image>
-      </view>
-      <view class="type">
-        <text style="font-size:125%">  运动</text>
-      </view>
-      <view class="ka">
-        <text>{{messageOfExercise}}</text>
-        <text class="iconfont {{selectedFlag[4]?'icon-shangjiantou':'icon-xiala'}}">
+		<view class="list" bindtap="changeToggle" data-index="3">
+			<view class="picture">
+				<image src="../../../images/exture.png"></image>
+			</view>
+			<view class="type">
+				<text style="font-size:125%">  加餐</text>
+			</view>
+			<view class="ka">
+				<text>{{messageOfOther}}</text>
+				<text class="iconfont {{selectedFlag[3]?'icon-shangjiantou':'icon-xiala'}}">
         </text>
-      </view>
-    </view>
-    
-    <view hidden="{{!selectedFlag[4]}}">
-      <block wx:for="{{other}}" wx:for-item="bk">
-        <view class="item_detail">
-          <view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
-          <view class="right" style="font-size:75% margin-bottm：10rpx" >{{bk.heat}}千卡</view>
-        </view>
-      </block>
-    </view>
-  </view>
-  <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"disabled="{{disabled}}" bindtap="goToAnalysisPage" hover-class="other-button-hover" > 卡路里分析 </button>
+			</view>
+		</view>
+
+		<view hidden="{{!selectedFlag[3]}}">
+			<block wx:for="{{other}}" wx:for-item="bk">
+				<view class="item_detail">
+					<view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
+					<view class="right" style="font-size:75% margin-bottm：10rpx">{{bk.fianl_heat}}千卡</view>
+				</view>
+			</block>
+		</view>
+
+
+		<view class="list" bindtap="changeToggle" data-index="4">
+			<view class="picture">
+				<image src="../../../images/exercise.png"></image>
+			</view>
+			<view class="type">
+				<text style="font-size:125%">  运动</text>
+			</view>
+			<view class="ka">
+				<text>{{messageOfExercise}}</text>
+				<text class="iconfont {{selectedFlag[4]?'icon-shangjiantou':'icon-xiala'}}">
+        </text>
+			</view>
+		</view>
+
+		<view hidden="{{!selectedFlag[4]}}">
+			<block wx:for="{{other}}" wx:for-item="bk">
+				<view class="item_detail">
+					<view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
+					<view class="right" style="font-size:75% margin-bottm：10rpx">{{bk.heat}}千卡</view>
+				</view>
+			</block>
+		</view>
+	</view>
+
+	<button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="goToAnalysisPage" hover-class="other-button-hover"> 卡路里分析 </button>
 
 </view>

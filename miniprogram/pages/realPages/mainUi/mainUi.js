@@ -58,11 +58,8 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    console.log("执行onLoad")
+  updateBg() {
+    console.log("执行updateBg")
     let that = this;
     var time = util.formatDate(new Date());
     that.setData({
@@ -72,21 +69,24 @@ Page({
     wx.cloud.database().collection("userMenu").where({
       _openid: that.data.open_id, // wtf??
       date: that.data.date
-    }).get({
-      success(res) {
-        console.log("请求成功", res)
-        that.setData({
-          datalist: res.data,
-          breakfast: res.data[0].breakfast,
-          lunch: res.data[0].lunch,
-          dinner: res.data[0].dinner,
-          other: res.data[0].other,
-        })
-      },
-      fail(res) {
-        console.log("请求失败", res)
-      }
+    }).get().then(res => {
+      console.log("请求成功", res)
+      that.setData({
+        datalist: res.data,
+        breakfast: res.data[0].breakfast,
+        lunch: res.data[0].lunch,
+        dinner: res.data[0].dinner,
+        other: res.data[0].other,
+      })
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log("执行onLoad")
+    this.updateBg();
   },
 
   /**
@@ -100,8 +100,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad();
     console.log("执行onShow")
+    this.updateBg();
     let that = this;
     //计算message
     console.log("计算message")

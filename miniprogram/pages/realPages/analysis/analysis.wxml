@@ -1,8 +1,7 @@
 <!--pages/realPages/analysis/analysis.wxml-->
-<text>pages/realPages/analysis/analysis.wxml</text>
 
 <view class="page">
-<!-- 总数 -->
+<!-- 总数 --> 
   <view class="li" bindtap='changeToggle'>
     <view class="left">总数</view>
     <view class="right gray" >8</view>
@@ -68,4 +67,57 @@
       </view>
     </block>
   </view>
+</view>
+
+<view class="project">
+  <view class="padding flex flex-wrap justify-between align-center ">
+    <view style="font-size:150%">今日计划</view>
+      <view class="margin-tb-sm text-center">
+     <button class="cu-btn round lines-blue" role="button" aria-disabled="false" size="mini" bindtap="add">添加</button>
+    </view>
+  </view>
+ 
+ 
+     <view class="cu-form-group margin-top">
+		<input class="title" value="请输入你的计划"></input>
+		<switch></switch>
+	</view>
+    <view class="cu-form-group margin-top">
+		<input class="title" value="请输入你的计划"></input>
+		<switch></switch>
+	</view>
+
+
+  <view class="padding flex flex-wrap justify-between align-center ">
+    <view style="font-size:150%">长期计划</view>
+      <view class="margin-tb-sm text-center">
+     <button class="cu-btn round lines-blue" role="button" aria-disabled="false" size="mini" bindtap="add">添加</button>
+    </view>
+  </view>
+
+  <view class="cu-form-group margin-top">
+		<input class="title" value="请输入你的计划"></input>
+		<switch></switch>
+	</view>
+  <view class="cu-form-group margin-top">
+		<input class="title" value="请输入你的计划"></input>
+		<switch></switch>
+	</view>
+    <view class="cu-form-group margin-top">
+		<input class="title" value="请输入你的计划"></input>
+		<switch></switch>
+	</view>
+  <view>
+    <view class="padding flex flex-wrap justify-between align-center ">
+      <view style="font-size:150%">今日已完成</view>
+    </view>
+    <view class="cu-item">
+      <view class="content padding-tb-sm">
+        <view class="finished"> <text class="cuIcon-clothesfill text-blue margin-right-xs" ></text>拉伸10分钟</view>
+        <view class="finished"> <text class="cuIcon-clothesfill text-blue margin-right-xs" ></text>长跑3千米</view>
+        <view class="finished"> <text class="cuIcon-clothesfill text-blue margin-right-xs" ></text>平板支撑2分钟</view>
+      </view>
+    </view>
+  </view>
+
 </view>

@@ -29,3 +29,8 @@
 .red {
   color: #fe2e2e;
 }
+
+.finished{
+  font-size: 15px;
+  background-color: white;
+}
