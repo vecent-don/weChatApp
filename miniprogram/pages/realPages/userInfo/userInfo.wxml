@@ -51,9 +51,9 @@
     </view>
 
   <view class="cu-item arrow">
-         <navigator class="content" url="../weightAnalysis/weightAnalysis?rate={{BMI}}&k=1" hover-class="none">
+         <navigator class="content" url="../calender/calender?cloudList={{cloud_List}}" hover-class="none">
           <text class="cuIcon-writefill text-cyan"></text>
-        <text class="text-grey">意见反馈</text>
+        <text class="text-grey">每日签到</text>
       </navigator>
     </view>
 

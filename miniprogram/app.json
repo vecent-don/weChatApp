@@ -10,7 +10,11 @@
     "pages/realPages/specific/specific",
     "pages/realPages/timeLine/timeLine",
     "pages/realPages/weightAnalysis/weightAnalysis",
+<<<<<<< Updated upstream
     "pages/realPages/sport/sport"
+=======
+    "pages/realPages/calender/calender"
+>>>>>>> Stashed changes
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -40,12 +44,15 @@
         "selectedIconPath": "/images/user_active.png"
       },
       {
+<<<<<<< Updated upstream
         "pagePath": "pages/realPages/sport/sport",
         "text": "运动",
         "iconPath": "/images/user.png",
         "selectedIconPath": "/images/user_active.png"
       },
       {
+=======
+>>>>>>> Stashed changes
         "pagePath": "pages/realPages/userInfo/userInfo",
         "text": "我",
         "iconPath": "/images/user.png",

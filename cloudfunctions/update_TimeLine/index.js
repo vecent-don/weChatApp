@@ -11,7 +11,9 @@ exports.main = async (event, context) => {
   var temp1;
   console.log("here")
   console.log(wxContext.OPENID)
-  temp=await db.collection("userTimeLine").update({
+  temp=await db.collection("userTimeLine").where({
+    _openid:wxContext.OPENID
+  }).update({
     data:{
       history:_.pull({
         date:event.date,

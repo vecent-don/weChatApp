@@ -15,6 +15,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    cloud_List:[{date:"2020-5-11"},{date:"2020-6-24"}],
   },
   watch:{
     
@@ -25,6 +26,7 @@ Page({
     })
   },
   onLoad: function () {
+    let that=this
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -55,7 +57,6 @@ Page({
    console.log(app.globalData)
      wx.cloud.database().collection('userInfo').where({_openid:app.globalData.ids.openid}).get()
     .then(res=>{
-     
       temp=res.data[0];
       console.log(res,temp)
       this.setData({
@@ -67,6 +68,21 @@ Page({
       console.log(this.BMI)
     }).catch(err=>{console.log(err)})
     ;
+    wx.cloud.database().collection("userTimeLine").where({
+      _openid: app.globalData.ids.openid,
+    }).get({
+      success(res) {
+        console.log("请求成功",  res.data[0].reg)
+        that.setData({
+           cloud_List: res.data[0].reg,
+        })
+         console.log("ser",that.data.cloud_List)    
+   
+      },
+      fail(res) {
+        console.log("请求失败", res)
+      }
+    })
    
   },
    onReady: function () {  

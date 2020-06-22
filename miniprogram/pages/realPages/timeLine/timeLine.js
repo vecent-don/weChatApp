@@ -13,6 +13,7 @@ Page({
        colorContent:["bg-green","bg-red","bg-grey","bg-blue","bg-pink","bg-purple"],
        cloud_list:[{date:"2019-10-4",weight:100},{date:"2019-10-4",weight:100},{date:"2019-10-4",weight:100},,{date:"2019-10-4",weight:100},{date:"2019-10-4",weight:100},,{date:"2019-10-4",weight:100}],
        description:["在今天体重变成了","wow,只有","朝着目标更近了，现在只有"],
+       te:[{date:"2020-6-20"}],
 
   },
 
@@ -50,8 +51,9 @@ getNumber:function(i){
       success(res){
         console.log("请求成功",res);
         that.setData({
-          cloud_list:res.data[0].history
+          cloud_list:res.data[0].history,
         })
+        console.log("cloud")
       },
       fail(res){
         console.log("请求失败",res);
