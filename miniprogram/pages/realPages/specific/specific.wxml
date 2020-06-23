@@ -4,7 +4,7 @@
 	<view class="my_title">
 		<!-- 食品 -->
 		<view class="picture" >
-			<image style="width:300rpx;height:250rpx" src="../../../images/food1.jpg"></image>
+			<image style="width:300rpx;height:250rpx" src="{{picUrl}}"></image>
 		</view>
 		<!-- 菜名 -->
 		<view class="foodname">
