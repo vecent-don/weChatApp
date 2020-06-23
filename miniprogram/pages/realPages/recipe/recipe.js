@@ -448,7 +448,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that=this
+    console.log('onShow 方法调用')
+    DataBase_favor.where({
+      _openid:that.data.open_id
+    }).get({
+      success(res){
+        that.setData({
+          favor_list:res.data[0].food_list
+        })
+      }
+    })
   },
 
   /**
@@ -486,6 +496,180 @@ Page({
 
   }
 
-  
 })
 
+/*
+food_list:[
+  {name:"黄米",
+   heat: 351,
+   isHealthy:true,
+  },
+  {
+    name:"番茄虾仁",
+    heat:64,
+    isHealthy:true,
+  },
+  {
+    name:"白玉豆腐",
+    heat: 75,
+    isHealthy:false,
+  },
+  {
+    name:"菠萝炒牛肉",
+    heat: 81,
+    isHealthy:true,
+  },
+  {
+    name:"小葱拌牛肚",
+    heat: 101,
+    isHealthy:false,
+  },
+  {
+    name:"砂锅豆腐",
+    heat: 55,
+    isHealthy:true,
+  },
+  {
+    name:"洋姜",
+    heat: 64 ,
+    isHealthy: true,
+  },
+  {
+    name:"小葱炒牛肉",
+    heat: 100 ,
+    isHealthy:false,
+  },
+  {
+    name:"白炒虾球",
+    heat: 102,
+    isHealthy:false,
+  },
+  {
+    name:"滑溜黄瓜猪里脊",
+    heat: 128,
+    isHealthy:true,
+  },
+  {
+    name:"薏米炖鸭",
+    heat: 83,
+    isHealthy:false,
+  },
+  {
+    name:"海米油菜芯",
+    heat: 73,
+    isHealthy: true,
+  },
+  {
+    name:"韭苔",
+    heat: 37,
+    isHealthy:true,
+  },
+  {
+    name:"纯净水",
+    heat: 0,
+    isHealthy: true,
+  },
+  {
+    name:"牛蹄筋",
+    heat: 151,
+    isHealthy:true,
+  },
+]*/
+
+//新建之后更新数据库
+  /*
+  update_db(){
+    let that = this
+    var the_only_id = that.data.the_only_id
+    var meal_time = that.data.meal_time
+    var list_tmp = that.data.list_tmp
+    if(meal_time == 1){
+      console.log("此处的openid",the_only_id)
+      DataBase_userMenu.doc(the_only_id).update({
+        data:{
+          date:"1999" 
+        },
+        success(res){
+          console.log("早餐修改",res)
+        },fail(res){
+          console.log("修改失败",res)
+        }
+      })
+    }
+    else if(meal_time == 2){
+      DataBase_userMenu.doc(the_only_id).update({
+        data:{
+          lunch:list_tmp
+        },
+        success(res){
+          console.log("午餐修改")
+        }
+      })
+    }
+    else if(meal_time == 3){
+      DataBase_userMenu.doc(the_only_id).update({
+        data:{
+          dinner:list_tmp
+        },
+        success(res){
+          console.log("晚餐修改")
+        }
+      })
+    }
+    else{
+      DataBase_userMenu.doc(the_only_id).update({
+        data:{
+          other:list_tmp
+        },
+        success(res){ 
+          console.log("其它修改")
+        }
+      })
+    }
+  },*/
+  //新建当天用户数据
+  /*
+    user_menu_addtion(){
+      let that = this
+      DataBase_userMenu.add({
+        data:{
+          breakfast:[],
+          date:that.data.current_date,
+          dinner:[],
+          lunch:[],
+          other:[]
+        },
+        success(res){
+          the_only_id = res._id
+          console.log(the_only_id)
+          that.setData({
+            the_only_id:res.id
+          })
+        },
+        fail(res){
+          console.log("添加userMenu时失败")
+        },
+        complete(){
+          that.update_db()
+        }
+      })
+    */
+   //一下是添加到另一个数据库中的代码，废弃
+    /*DataBase_all.add({
+      data:{
+        opid:that.data.open_id,
+        date:that.data.current_date,
+        meal_time:that.data.multiIndex[1]+1,
+        food_name:that.data.food_name,
+        food_heat:that.data.food_heat,
+        weight:that.data.current_weight
+      },
+      success(res){
+        console.log("添加成功",res)
+      },
+      fail(res){
+        console.log("添加失败",res)
+      }
+    })
+    
+  },*/

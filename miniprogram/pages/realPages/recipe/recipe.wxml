@@ -54,7 +54,7 @@
   <view scroll-y = "true ">
     <view class="add_self" bindtap="add_user_def" data-target="addition">⊕添加自定义</view>
     <view class = "item-content" wx:for="{{userDefined_list}}" wx:for-item = "item" wx:for-index="current_index" >
-      <view class="detail" bindlongpress="delete_item"  data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" bindtap="showModal" data-unit="{{item.unit}}" data-amount="{{item.amount}}" data-ishealthy='{{item.ishealthy}}'>
+      <view class="detail" bindlongpress="delete_item"  data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-target="bottomModal" data-unit="{{item.unit}}" data-amount="{{item.amount}}" data-ishealthy='{{item.ishealthy}}'>
         <view class="name_style"> <text class='text-grey'>{{item.name}}</text> </view>
         <view class="heat_style"> {{item.heat}}</view>
         <view class="qianka">千卡/{{item.amount}}{{item.unit}}</view>

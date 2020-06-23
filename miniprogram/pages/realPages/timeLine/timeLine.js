@@ -39,13 +39,27 @@ getNumber:function(i){
       success(res){
         console.log("获取openid成功")
         openid_tmp = res.result.openid
-        console.log(that.data.open_id)
+        console.log(openid_tmp)
+        wx.cloud.database().collection("userTimeLine").where({
+          _openid:  openid_tmp,
+        }).get({
+          success(res){
+            console.log("请求成功",res);
+            that.setData({
+              cloud_list:res.data[0].history,
+            })
+            console.log("cloud")
+          },
+          fail(res){
+            console.log("请求失败",res);
+          }
+        })
       },fail(res){
         console.log("获取openid失败",res)
       }
     })
     
-    wx.cloud.database().collection("userTimeLine").where({
+    /*wx.cloud.database().collection("userTimeLine").where({
       _openid:  openid_tmp,
     }).get({
       success(res){
@@ -58,7 +72,7 @@ getNumber:function(i){
       fail(res){
         console.log("请求失败",res);
       }
-    })
+    })*/
   },
 
   /**
