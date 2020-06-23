@@ -25,20 +25,20 @@
       {
         "pagePath": "pages/realPages/mainUi/mainUi",
         "text": "首页",
-        "iconPath": "/images/user.png",
-        "selectedIconPath": "/images/user_active.png"
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home_active.png"
       },
       {
         "pagePath": "pages/realPages/recipe/recipe",
         "text": "食谱",
-        "iconPath": "/images/user.png",
-        "selectedIconPath": "/images/user_active.png"
+        "iconPath": "/images/recipe.png",
+        "selectedIconPath": "/images/recipe_active.png"
       },
       {
 
         "pagePath": "pages/realPages/sport/sport",
         "text": "运动",
-        "iconPath": "/images/user.png",
+        "iconPath": "/images/move.png",
         "selectedIconPath": "/images/user_active.png"
       },
       {
