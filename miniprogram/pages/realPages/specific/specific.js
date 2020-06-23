@@ -70,7 +70,8 @@ Page({
 		 xheat:0,
 		 xamount:0,
 		 xunit:"g",
-		 heartUrl:"../../../images/like_untouched.png"
+		 heartUrl:"../../../images/like_untouched.png",
+		 picUrl:""
 	},
 	favor(){
 		let that = this
@@ -170,16 +171,18 @@ Page({
 						xheat:res.data.heat,
 						xamount:res.data.amount,
 						xunit:res.data.unit,
-						xhealthy:res.data.ishealthy
+						xhealthy:res.data.ishealthy,
+						picUrl:res.data.pic
 					})
-					console.log(xx.data.xfat)
+					
 				},
 				
 				fail:function(res){
 					console.log("fail",res)
 				},
 				complete:function(res){
-					// console.log(xx.data.xcarbohydrate)
+					console.log("here")
+					console.log(xx.data.picUrl)
 					xx.getNewData()
 				}
 			})

@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/realPages/mainUi/mainUi",
-    "pages/index/index",
     "pages/logs/logs",
     "pages/page2/index2",
     "pages/realPages/analysis/analysis",
@@ -24,14 +23,8 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "/images/user.png",
-        "selectedIconPath": "/images/user_active.png"
-      },
-      {
         "pagePath": "pages/realPages/mainUi/mainUi",
-        "text": "添加",
+        "text": "首页",
         "iconPath": "/images/user.png",
         "selectedIconPath": "/images/user_active.png"
       },
