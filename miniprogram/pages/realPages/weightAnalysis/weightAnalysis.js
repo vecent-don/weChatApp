@@ -54,13 +54,13 @@ Page({
 				tem_grade=100
 				tem_state="正常"
 			}else if(rate<17.9){
-				tem_grade=80
+				tem_grade=70
 				tem_state="低体重"
 			}else if(rate<=27.9&&rate>23.9){
 				tem_grade=80
 				tem_state="超重"
 			}else{
-				tem_grade=60
+				tem_grade=50
 				tem_state="肥胖"
 			}
 			this.setData({

@@ -14,12 +14,12 @@ exports.main = async (event, context) => {
     _openid:wxContext.OPENID,
   }).get()
  if(tem.data.length<1){
-   var his=[{ 'weight':event.nowWeight,'date':event.date}]
+   var his=[{ 'date':event.date}]
   await db.collection("userTimeLine").add({
     data:{
       '_openid':wxContext.OPENID,
-      'history':his,
-      'reg':[]
+      'history':[],
+      'reg':his,
     }
   })
  var k= await db.collection("userTimeLine").where({
@@ -33,7 +33,7 @@ exports.main = async (event, context) => {
     _openid:wxContext.OPENID
   }).update({
     data:{
-      history:_.pull({
+      reg:_.pull({
         date:event.date,
       }),
      },
@@ -43,8 +43,7 @@ exports.main = async (event, context) => {
     _openid:wxContext.OPENID
   }).update({
     data:{
-      history:_.push({
-        weight:event.nowWeight,
+      reg:_.push({
         date:event.date,
       })
     },
