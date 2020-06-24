@@ -156,6 +156,6 @@
 		</view>
 	</view>
 
-	<button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="goToAnalysisPage" hover-class="other-button-hover"> 卡路里分析 </button>
+	<button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="goToAnalysisPage" hover-class="other-button-hover"> 我的计划 </button>
 
 </view>
