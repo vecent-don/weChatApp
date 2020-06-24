@@ -1,4 +1,5 @@
 // pages/realPages/analysis/analysis.js
+const DataBase_userPlanList = wx.cloud.database().collection("userPlanList")
 Page({
   data: {
 
@@ -19,7 +20,9 @@ Page({
     ],
     in:"请输入今日计划",
     history:["深蹲30个","跑步3千米","拉伸10分钟"],
-
+    plan_list:[],
+    open_id:null,
+    showView:false,
   // 展开折叠
     selectedFlag: [false, false, false, false],
 
@@ -37,6 +40,112 @@ Page({
       selectedFlag: this.data.selectedFlag
     })
   },
+  add:function(e){
+    this.setData({
+      modalName: e.currentTarget.dataset.target,
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  user_plan(e){
+    this.setData({
+      user_def_plan:e.detail.value
+    })
+  },
+  user_define(){
+    let that = this
+    DataBase_userPlanList.where({
+      _openid:that.data.open_id
+    }).get({
+      success(res){
+        var list_tmp_plan=res.data[0].plan
+        //var list_tmp_plan = res.data[0].userDefined_listplan
+        list_tmp_plan.push({name:that.data.user_def_plan,completed:false})
+       // list_tmp_plan.push({name:that.data.user_def_name,heat:that.data.user_def_heat,unit:that.data.user_def_unit,amount:that.data.user_def_amount})
+        console.log(list_tmp_plan)
+        that.setData({
+          plan:list_tmp_plan
+         })
+        wx.cloud.callFunction({
+          name:'add_to_plan',
+          data:{
+            list_tmp_plan:list_tmp_plan,
+            _openid:that.data.open_id
+          },
+          success(res){
+            console.log(res)
+          }
+        })
+      }
+    })
+    that.hideModal()
+  },
+  user_plan_long(e){
+    this.setData({
+      user_def_plan_long:e.detail.value
+    })
+  },
+
+  user_define_(){
+    let that = this
+    DataBase_userPlanList.where({
+      _openid:that.data.open_id
+    }).get({
+      success(res){
+        var list_tmp_plan=res.data[0].plan_long
+        list_tmp_plan.push({name:that.data.user_def_plan_long,completed:false})
+        console.log(list_tmp_plan)
+        that.setData({
+          plan_long:list_tmp_plan
+         })
+        wx.cloud.callFunction({
+          name:'add_to_plan',
+          data:{
+            list_tmp_plan:list_tmp_plan,
+            _openid:that.data.open_id
+          },
+          success(res){
+            console.log(res)
+          }
+        })
+      }
+    })
+    that.hideModal()
+  },
+
+  toHide:function(){
+    var that=this;
+
+    that.setData({
+      completed:(!that.data.completed)
+
+    })
+    DataBase_userPlanList.where({
+      _openid:that.data.open_id
+    }).get({
+      success(res){
+        var list_tmp_plan=res.data[0].plan
+        list_tmp_plan.push({name:that.data.user_def_plan,completed:false})
+        console.log(list_tmp_plan)
+        that.setData({
+          plan:list_tmp_plan
+         })
+        wx.cloud.callFunction({
+          name:'add_to_plan',
+          data:{
+            list_tmp_plan:list_tmp_plan,
+            _openid:that.data.open_id
+          },
+          success(res){
+            console.log(res)
+          }
+        })
+      }
+    })
+  },
   
   menuArrow: function (e) {
     this.setData({
@@ -47,5 +156,32 @@ Page({
     this.setData({
       skin: e.detail.value
     });
+  },
+  
+  onLoad: function (options) {
+    let that=this;
+    showView:(options.showView=="true"?true:false)
+    wx.cloud.callFunction({
+      name:"get_openid",
+      success(res){
+        console.log("获取openid成功")
+        getApp().globalData._openid = res.result.openid
+        that.setData({
+          open_id: res.result.openid
+        })
+      },fail(res){
+        console.log("获取openid失败",res)
+      }
+    })
+    DataBase_userPlanList.where({
+      _openid:that.data.open_id
+    }).get({
+      success(res){
+        console.log("user",res)
+        that.setData({
+          plan:res.data[0].plan
+        })
+      }
+    })
   }
 })

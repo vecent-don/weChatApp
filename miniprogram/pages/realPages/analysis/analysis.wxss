@@ -34,3 +34,14 @@
   font-size: 15px;
   background-color: white;
 }
+.bright789_view_hide{
+
+  display: none;
+
+}
+
+.bright789_view_show{
+
+  display: block;
+
+}
