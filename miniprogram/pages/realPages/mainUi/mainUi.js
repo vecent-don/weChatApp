@@ -88,7 +88,7 @@ Page({
       calorie_burned: that.data.messageOfExercise,
     })
     that.setData({
-      calorie_potential: 2000 - Number(that.data.calorie_taken_in)+Number(that.data.calorie_burned),
+      calorie_potential: 2000 - Number(that.data.calorie_taken_in) + Number(that.data.calorie_burned),
     })
   },
 
