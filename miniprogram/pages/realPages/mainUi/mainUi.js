@@ -126,8 +126,21 @@ Page({
    */
   onLoad: function (options) {
     console.log("执行onLoad")
+    let that = this;
+    wx.cloud.callFunction({
+      name:"get_openid",
+      success(res){
+        console.log("获取openid成功")
+        getApp().globalData._openid = res.result.openid
+        that.setData({
+          open_id: res.result.openid
+        })
+      },fail(res){
+        console.log("获取openid失败",res)
+      }
+    })
     var time = util.formatDate(new Date());
-    this.setData({
+    that.setData({
       _openid: getApp().globalData._openid,
       date: time,
     })
