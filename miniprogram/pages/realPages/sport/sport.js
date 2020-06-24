@@ -183,6 +183,7 @@ Page({
   },
   addData(e){
     let that = this
+    console.log(that.data.current_heat,that.data.current_st)
     var date = that.getDateStr(null,0-that.data.multiIndex[0])
     that.setData({
       meal_time:that.data.multiIndex[1]+1,
@@ -212,10 +213,6 @@ Page({
       fail(res){
         console.log("调用失败")
       }
-    })
-    that.setData({
-      current_st:0,
-      current_heat:0,
     })
   },
   showModal:function(e) {
