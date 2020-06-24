@@ -23,11 +23,73 @@ Page({
     lunch: [],
     dinner: [],
     other: [],
-
+    exercise: [],
 
     // 展开折叠
     selectedFlag: [false, false, false, false, false]
+  },
 
+  // 计算message
+  calmessage() {
+    console.log("计算message")
+    let that = this;
+    if (that.data.breakfast.length > 0) {
+      //console.log("运行至此")
+      var temp = 0;
+      for (var i = 0; i < that.data.breakfast.length; i++) {
+        temp += that.data.breakfast[i].heat * Number(that.data.breakfast[i].weight) / Number(that.data.breakfast[i].amount);
+      }
+      that.setData({
+        messageOfBreakfast: temp.toFixed()
+      })
+    }
+    if (that.data.lunch.length != 0) {
+      //console.log("运行至此")
+      var temp = 0;
+      for (var i = 0; i < that.data.lunch.length; i++) {
+        temp += that.data.lunch[i].heat * Number(that.data.lunch[i].weight) / Number(that.data.lunch[i].amount);
+      }
+      that.setData({
+        messageOfLunch: temp.toFixed()
+      })
+    }
+    if (that.data.dinner.length != 0) {
+      //console.log("运行至此")
+      var temp = 0;
+      for (var i = 0; i < that.data.dinner.length; i++) {
+        temp += that.data.dinner[i].heat * Number(that.data.dinner[i].weight) / Number(that.data.dinner[i].amount);
+      }
+      that.setData({
+        messageOfDinner: temp.toFixed()
+      })
+    }
+    if (that.data.other.length != 0) {
+      //console.log("运行至此")
+      var temp = 0;
+      for (var i = 0; i < that.data.other.length; i++) {
+        temp += that.data.other[i].heat * Number(that.data.other[i].weight) / Number(that.data.other[i].amount);
+      }
+      that.setData({
+        messageOfOther: temp.toFixed()
+      })
+    }
+    if (that.data.exercise.length != 0) {
+      //console.log("运行至此")
+      var temp = 0;
+      for (var i = 0; i < that.data.exercise.length; i++) {
+        temp += Number(that.data.exercise[i].heat);
+      }
+      that.setData({
+        messageOfExercise: temp.toFixed()
+      })
+    }
+    that.setData({
+      calorie_taken_in: Number(that.data.messageOfBreakfast) + Number(that.data.messageOfLunch) + Number(that.data.messageOfDinner) + Number(that.data.messageOfOther),
+      calorie_burned: that.data.messageOfExercise,
+    })
+    that.setData({
+      calorie_potential: 2000 - Number(that.data.calorie_taken_in) + Number(that.data.calorie_burned),
+    })
   },
 
   // 展开折叠选择  
@@ -44,40 +106,18 @@ Page({
     })
   },
 
-  //点击日期组件确定事件  
+  // 点击日期组件确定事件  
   bindDateChange: function (e) {
     console.log("执行bindDateChange")
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
     })
   },
 
+  // 前往分析界面
   goToAnalysisPage: function () {
     wx.navigateTo({
       url: '../../../pages/realPages/analysis/analysis',
-    })
-  },
-
-  updateBg() {
-    console.log("执行updateBg")
-    let that = this;
-    var time = util.formatDate(new Date());
-    that.setData({
-      _openid: getApp().globalData._openid,
-      date: time
-    })
-    wx.cloud.database().collection("userMenu").where({
-      _openid: that.data.open_id, // wtf??
-      date: that.data.date
-    }).get().then(res => {
-      console.log("请求成功", res)
-      that.setData({
-        datalist: res.data,
-        breakfast: res.data[0].breakfast,
-        lunch: res.data[0].lunch,
-        dinner: res.data[0].dinner,
-        other: res.data[0].other,
-      })
     })
   },
 
@@ -86,7 +126,11 @@ Page({
    */
   onLoad: function (options) {
     console.log("执行onLoad")
-    this.updateBg();
+    var time = util.formatDate(new Date());
+    this.setData({
+      _openid: getApp().globalData._openid,
+      date: time,
+    })
   },
 
   /**
@@ -101,54 +145,24 @@ Page({
    */
   onShow: function () {
     console.log("执行onShow")
-    this.updateBg();
     let that = this;
-    //计算message
-    console.log("计算message")
-    if (that.data.breakfast.length > 0) {
-      //console.log("运行至此")
-      var temp = 0;
-      for (var i = 0; i < that.data.breakfast.length; i++) {
-        temp += that.data.breakfast[i].heat * Number(that.data.breakfast[i].weight) / Number(that.data.breakfast[i].amount);
+    // 请求数据
+    wx.cloud.database().collection("userMenu").where({
+      _openid: that.data.open_id, // wtf??
+      date: that.data.date
+    }).get({
+      success(res) {
+        console.log("请求成功", res)
+        that.setData({
+          datalist: res.data,
+          breakfast: res.data[0].breakfast,
+          lunch: res.data[0].lunch,
+          dinner: res.data[0].dinner,
+          other: res.data[0].other,
+          exercise: res.data[0].sport
+        })
+        that.calmessage();
       }
-      that.setData({
-        messageOfBreakfast: temp
-      })
-    }
-    if (that.data.lunch.length != 0) {
-      //console.log("运行至此")
-      var temp = 0;
-      for (var i = 0; i < that.data.lunch.length; i++) {
-        temp += that.data.lunch[i].heat * Number(that.data.lunch[i].weight) / Number(that.data.lunch[i].amount);
-      }
-      that.setData({
-        messageOfLunch: temp
-      })
-    }
-    if (that.data.dinner.length != 0) {
-      //console.log("运行至此")
-      var temp = 0;
-      for (var i = 0; i < that.data.dinner.length; i++) {
-        temp += that.data.dinner[i].heat * Number(that.data.dinner[i].weight) / Number(that.data.dinner[i].amount);
-      }
-      that.setData({
-        messageOfDinner: temp
-      })
-    }
-    if (that.data.other.length != 0) {
-      //console.log("运行至此")
-      var temp = 0;
-      for (var i = 0; i < that.data.other.length; i++) {
-        temp += that.data.other[i].heat * Number(that.data.other[i].weight) / Number(that.data.other[i].amount);
-      }
-      that.setData({
-        messageOfOther: temp
-      })
-    }
-    that.setData({
-      calorie_taken_in: that.data.messageOfBreakfast + that.data.messageOfLunch + that.data.messageOfDinner + that.data.messageOfOther,
-      calorie_burned: that.data.messageOfExercise,
-      calorie_potential: 2000 - that.data.calorie_taken_in,
     })
   },
 
