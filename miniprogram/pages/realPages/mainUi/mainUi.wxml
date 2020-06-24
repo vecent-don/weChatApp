@@ -3,7 +3,7 @@
 <view class="root">
 
 	<view class="cu-form-group">
-		<view class="title">日期选择</view>
+		<view class="title">日期</view>
 		<picker mode="date" value="{{date}}" start="1978-01-01" end="2099-12-31" bindchange="bindDateChange">
 			<view class="picker">
 				{{date}}
@@ -147,7 +147,7 @@
 		</view>
 
 		<view hidden="{{!selectedFlag[4]}}">
-			<block wx:for="{{other}}" wx:for-item="bk">
+			<block wx:for="{{exercise}}" wx:for-item="bk">
 				<view class="item_detail">
 					<view class="left" style="font-size:75% margin-bottm：10rpx">{{bk.name}}</view>
 					<view class="right" style="font-size:75% margin-bottm：10rpx">{{bk.heat}}千卡</view>
