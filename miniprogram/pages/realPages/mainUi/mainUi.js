@@ -9,6 +9,7 @@ Page({
    */
   data: {
     _openid: "",
+    open_id: null,
     date: "",
     calorie_taken_in: 0,
     calorie_burned: 0,
@@ -24,8 +25,6 @@ Page({
     dinner: [],
     other: [],
     exercise: [],
-    open_id:null,
-    // 展开折叠
     selectedFlag: [false, false, false, false, false]
   },
 
@@ -109,14 +108,14 @@ Page({
   // 点击日期组件确定事件  
   bindDateChange: function (e) {
     let that = this
-    console.log("执行bindDateChange",this.data.open_id)
+    console.log("执行bindDateChange", this.data.open_id)
     this.setData({
       date: e.detail.value,
-      messageOfBreakfast:0,
-      messageOfLunch:0,
-      messageOfDinner:0,
-      messageOfOther:0,
-      messageOfExercise:0,
+      messageOfBreakfast: 0,
+      messageOfLunch: 0,
+      messageOfDinner: 0,
+      messageOfOther: 0,
+      messageOfExercise: 0,
       calorie_taken_in: 0,
       calorie_burned: 0,
       calorie_potential: 2000,
@@ -127,7 +126,7 @@ Page({
     }).get({
       success(res) {
         console.log("请求成功", res)
-        if(res.length != 0){
+        if (res.length != 0) {
           that.setData({
             datalist: res.data,
             breakfast: res.data[0].breakfast,
@@ -138,7 +137,6 @@ Page({
           })
           that.calmessage();
         }
-        
       }
     })
   },
@@ -161,8 +159,8 @@ Page({
       date: time,
     })
     wx.cloud.callFunction({
-      name:"get_openid",
-      success(res){
+      name: "get_openid",
+      success(res) {
         getApp().globalData._openid = res.result.openid
         that.setData({
           open_id: res.result.openid
@@ -184,8 +182,9 @@ Page({
             that.calmessage();
           }
         })
-      },fail(res){
-        console.log("获取openid失败",res)
+      },
+      fail(res) {
+        console.log("获取openid失败", res)
       }
     })
   },
@@ -194,16 +193,17 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    //console.log("执行onReady")
+    console.log("执行onReady")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log("执行onShow")
     let that = this;
     // 请求数据
-    if(that.data.open_id!=null){
+    if (that.data.open_id != null) {
       wx.cloud.database().collection("userMenu").where({
         _openid: that.data.open_id, // wtf??
         date: that.data.date

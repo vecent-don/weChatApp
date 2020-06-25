@@ -2,6 +2,7 @@
 page {
   height: 100%
 }
+
 /* <image class='background' src="../../../images/bg_main.png" mode="aspectFill"></image> */
 .background {
   width: 100%;
@@ -18,13 +19,6 @@ page {
   height: 100%;
   background-color: #fff;
 }
-
-/* .section{
-  justify-content: center;
-  background:rgb(225, 230, 225);
-  margin:10rpx;
-  padding:20rpx
-} */
 
 .summary_panel {
   display: flex;
@@ -72,7 +66,8 @@ page {
   /* background-color: #fff; */
   display: flex;
   justify-content: space-between;
-  font-size: 75%;
+  align-items: center;
+  font-size: 100%;
   width: 100%;
   padding: 0 4%;
   line-height: 40rpx;
@@ -118,7 +113,7 @@ icon-shangjiantou {
   flex: 1;
   text-align: left;
   font-size: 10px;
-  margin-top: 25rpx;
+  /* margin-top: 25rpx; */
 }
 
 .ka {
@@ -132,4 +127,7 @@ icon-shangjiantou {
   height: 40px;
   width: 40px;
   margin-top: 10rpx;
+}
+.butt{
+  margin-bottom: 15px;
 }

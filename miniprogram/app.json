@@ -39,7 +39,7 @@
         "pagePath": "pages/realPages/sport/sport",
         "text": "运动",
         "iconPath": "/images/move.png",
-        "selectedIconPath": "/images/user_active.png"
+        "selectedIconPath": "/images/move_active.png"
       },
       {
 

@@ -1,7 +1,7 @@
 <!--pages/realPages/mainUi/mainUi.wxml-->
 
 <view class="root">
-	
+
 	<view class="cu-form-group">
 		<view class="title">日期</view>
 		<picker mode="date" value="{{date}}" start="1978-01-01" end="2099-12-31" bindchange="bindDateChange">
@@ -93,8 +93,7 @@
 			</view>
 			<view class="ka">
 				<text>{{messageOfDinner}}
-				<text class="iconfont {{selectedFlag[2]?'icon-shangjiantou':'icon-xiala'}}">
-        </text>
+				<text class="iconfont {{selectedFlag[2]?'icon-shangjiantou':'icon-xiala'}}"></text>
 				</text>
 			</view>
 		</view>
@@ -156,6 +155,8 @@
 		</view>
 	</view>
 
-	<button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="goToAnalysisPage" hover-class="other-button-hover"> 我的计划 </button>
+	<view class="butt">
+		<button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="goToAnalysisPage" hover-class="other-button-hover"> 我的计划 </button>
+	</view>
 
 </view>
