@@ -3,7 +3,7 @@
 
 <view class="project">
   <view class="padding flex flex-wrap justify-between align-center ">
-    <view style="font-size:150%">今日计划</view>
+    <view style="font-size:150%">长期计划</view>
     <view class="margin-tb-sm text-center">
       <button class="cu-btn round lines-blue" role="button" aria-disabled="false" size="mini" bindtap="add" data-target="addition">添加</button>
 
@@ -32,40 +32,38 @@
 </view>
 
       <view wx:for="{{plan}}"  wx:for-item = "item" wx:for-index="current_index">
-        <view class="cu-form-group margin-top" >
+        <view class="cu-form-group margin-top" style='display:{{display[current_index]}}'>
 		      {{item.name}}
 		      <switch></switch>
 	      </view>
       </view>
 
   <view class="padding flex flex-wrap justify-between align-center ">
-    <view style="font-size:150%">长期计划</view>
-      <view class="margin-tb-sm text-center">
-    
+    <view style="font-size:150%">今日计划</view>
+    <view class="margin-tb-sm text-center">
+      <button class="cu-btn round lines-blue" role="button" aria-disabled="false" size="mini" bindtap="add2" data-target="addition">添加</button>
     </view>
   </view>
-
-  <view class="cu-form-group margin-top">
-		<input class="title" value="请输入你的计划"></input>
-		<switch></switch>
-	</view>
-  <view class="cu-form-group margin-top">
-		<input class="title" value="请输入你的计划"></input>
-		<switch></switch>
-	</view>
-    <view class="cu-form-group margin-top">
-		<input class="title" value="请输入你的计划"></input>
-		<switch></switch>
-	</view>
+ <view wx:for="{{long_plan}}"  wx:for-item = "item" wx:for-index="current_index">
+        <view class="cu-form-group margin-top" style='display:{{long_plan[current_index].show}}'>
+		    <input class="title" placeholder="请输入你的计划" bindinput="hideLongPlan" data-index="{{current_index}}"></input>
+		    <switch bindchange="switchChange"data-index="{{current_index}}"></switch>
+	      </view>
+  </view>
   <view>
     <view class="padding flex flex-wrap justify-between align-center ">
       <view style="font-size:150%">今日已完成</view>
     </view>
     <view class="cu-item">
       <view class="content padding-tb-sm">
-        <view class="finished"> <text class="cuIcon-clothesfill text-blue margin-right-xs" ></text>拉伸10分钟</view>
-        <view class="finished"> <text class="cuIcon-clothesfill text-blue margin-right-xs" ></text>长跑3千米</view>
-        <view class="finished"> <text class="cuIcon-clothesfill text-blue margin-right-xs" ></text>平板支撑2分钟</view>
+
+       <view wx:for="{{long_plan}}"  wx:for-item = "item" wx:for-index="current_index">
+        <view class="cu-form-group margin-top" style='display:{{long_plan[current_index].show=="none"?"inlne-block":"none"}}'>
+		      
+           <view class="finished"> <text class="cuIcon-clothesfill text-blue margin-right-xs" ></text>{{item.v}}</view>
+	      </view>
+      </view>
+
       </view>
     </view>
   </view>

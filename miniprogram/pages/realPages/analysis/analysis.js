@@ -2,7 +2,7 @@
 const DataBase_userPlanList = wx.cloud.database().collection("userPlanList")
 Page({
   data: {
-
+    display:[],
     list01: [
       { item_id: 1 }, { item_id: 11 }, { item_id: 11 },
     ],
@@ -23,9 +23,35 @@ Page({
     plan_list:[],
     open_id:null,
     showView:false,
+    long_plan:[{'show':'inlne-block'},{'show':'inlne-block'},{'show':'inlne-block'}],
   // 展开折叠
     selectedFlag: [false, false, false, false],
 
+  },
+  hideLongPlan:function(e){
+    var t="long_plan["+e.currentTarget.dataset.index+"].v"
+    this.setData({
+      [t]:e.detail.value
+    })
+    console.log(e,this.data.long_plan)
+  },
+  switchChange:function(e){
+    console.log(e)
+    if(e.detail.value==true){
+      var t="long_plan["+e.currentTarget.dataset.index+"].show"
+      this.setData({
+        [t]:'none'
+      })
+      console.log(this.data.long_plan)
+    }
+  },
+  add2:function(e){
+    var t="long_plan["+this.data.long_plan.length+"]"
+    this.setData({
+      [t]:{show:'inlne-block'}
+    })
+
+console.log(this.data.long_plan)
   },
     // 展开折叠选择  
   changeToggle:function(e){
@@ -35,12 +61,12 @@ Page({
     }else{
       this.data.selectedFlag[index] = true;
     }
-
     this.setData({
       selectedFlag: this.data.selectedFlag
     })
   },
   add:function(e){
+    console.log(e)
     this.setData({
       modalName: e.currentTarget.dataset.target,
     })

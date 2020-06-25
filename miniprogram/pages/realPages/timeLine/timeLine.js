@@ -40,6 +40,7 @@ getNumber:function(i){
         console.log("获取openid成功")
         openid_tmp = res.result.openid
         console.log(openid_tmp)
+
         wx.cloud.database().collection("userTimeLine").where({
           _openid:  openid_tmp,
         }).get({
@@ -54,6 +55,7 @@ getNumber:function(i){
             console.log("请求失败",res);
           }
         })
+
       },fail(res){
         console.log("获取openid失败",res)
       }
