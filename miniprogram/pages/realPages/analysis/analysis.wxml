@@ -6,7 +6,8 @@
     <view style="font-size:150%">长期计划</view>
     <view class="margin-tb-sm text-center">
       <button class="cu-btn round lines-blue" role="button" aria-disabled="false" size="mini" bindtap="add" data-target="addition">添加</button>
-
+		</view>
+	</view>
 	<view class="cu-modal {{modalName=='addition'?'show':''}}">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
