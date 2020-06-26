@@ -42,8 +42,6 @@
         "selectedIconPath": "/images/move_active.png"
       },
       {
-
-
         "pagePath": "pages/realPages/userInfo/userInfo",
         "text": "我",
         "iconPath": "/images/user.png",
